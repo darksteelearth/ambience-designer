@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+  ambiences Ambience[]
+}
+
+model Ambience {
+  id        Int             @id @default(autoincrement())
+  title     String
+  authorId  Int
+  author    User            @relation(fields: [authorId], references: [id])
+  config    Sound[]         
+}
+
+model Sound {
+  id        Int             @id @default(autoincrement())
+  soundId    Int
+  ambienceId Int
+  ambience   Ambience       @relation(fields: [ambienceId], references: [id])
+  volume     Float
+}
