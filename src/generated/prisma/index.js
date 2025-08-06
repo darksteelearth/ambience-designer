@@ -175,14 +175,14 @@ const config = {
   "inlineDatasources": {
     "db": {
       "url": {
-        "fromEnvVar": "DATABASE_URL",
+        "fromEnvVar": "POSTGRES_PRISMA_URL",
         "value": null
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id        Int        @id @default(autoincrement())\n  email     String     @unique\n  name      String?\n  ambiences Ambience[]\n}\n\nmodel Ambience {\n  id       Int     @id @default(autoincrement())\n  title    String\n  authorId Int\n  author   User    @relation(fields: [authorId], references: [id])\n  config   Sound[]\n}\n\nmodel Sound {\n  id         Int      @id @default(autoincrement())\n  soundId    Int\n  ambienceId Int\n  ambience   Ambience @relation(fields: [ambienceId], references: [id])\n  volume     Float\n}\n",
-  "inlineSchemaHash": "b2b7801256374f1ea6d6e13a3ec1f75a4c8d9a36de1ee7eb45ef95be38c2b33d",
-  "copyEngine": false
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"POSTGRES_PRISMA_URL\")\n  directUrl = env(\"POSTGRES_URL_NON_POOLING\")\n}\n\nmodel User {\n  id        Int        @id @default(autoincrement())\n  email     String     @unique\n  name      String?\n  ambiences Ambience[]\n}\n\nmodel Ambience {\n  id       Int     @id @default(autoincrement())\n  title    String\n  authorId Int\n  author   User    @relation(fields: [authorId], references: [id])\n  config   Sound[]\n}\n\nmodel Sound {\n  id         Int      @id @default(autoincrement())\n  soundId    Int\n  ambienceId Int\n  ambience   Ambience @relation(fields: [ambienceId], references: [id])\n  volume     Float\n}\n",
+  "inlineSchemaHash": "ffdac519520728495429840ac883be526524d567cc8b41c67d665e2300c61df5",
+  "copyEngine": true
 }
 
 const fs = require('fs')
@@ -219,3 +219,9 @@ const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
+// file annotations for bundling tools to include these files
+path.join(__dirname, "libquery_engine-darwin-arm64.dylib.node");
+path.join(process.cwd(), "src/generated/prisma/libquery_engine-darwin-arm64.dylib.node")
+// file annotations for bundling tools to include these files
+path.join(__dirname, "schema.prisma");
+path.join(process.cwd(), "src/generated/prisma/schema.prisma")
