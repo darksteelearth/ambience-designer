@@ -172,17 +172,16 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
-        "fromEnvVar": "DATABASE_URL",
+        "fromEnvVar": "PRISMA_DATABASE_URL",
         "value": null
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id        Int        @id @default(autoincrement())\n  email     String     @unique\n  name      String?\n  ambiences Ambience[]\n}\n\nmodel Ambience {\n  id       Int     @id @default(autoincrement())\n  title    String\n  authorId Int\n  author   User    @relation(fields: [authorId], references: [id])\n  config   Sound[]\n}\n\nmodel Sound {\n  id         Int      @id @default(autoincrement())\n  soundId    Int\n  ambienceId Int\n  ambience   Ambience @relation(fields: [ambienceId], references: [id])\n  volume     Float\n}\n",
-  "inlineSchemaHash": "b2b7801256374f1ea6d6e13a3ec1f75a4c8d9a36de1ee7eb45ef95be38c2b33d",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"PRISMA_DATABASE_URL\")\n}\n\nmodel User {\n  id        Int        @id @default(autoincrement())\n  email     String     @unique\n  name      String?\n  ambiences Ambience[]\n}\n\nmodel Ambience {\n  id       Int     @id @default(autoincrement())\n  title    String\n  authorId Int\n  author   User    @relation(fields: [authorId], references: [id])\n  config   Sound[]\n}\n\nmodel Sound {\n  id         Int      @id @default(autoincrement())\n  soundId    Int\n  ambienceId Int\n  ambience   Ambience @relation(fields: [ambienceId], references: [id])\n  volume     Float\n}\n",
+  "inlineSchemaHash": "9a4adbb48c56d968f20524295615fe2ac0abbf46bec1bb74d46918896a3143ba",
   "copyEngine": false
 }
 
