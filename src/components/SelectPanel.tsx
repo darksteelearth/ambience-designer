@@ -23,7 +23,7 @@ const SelectPanel = () => {
 
   return (
     <div className="justify-content-center flex flex-col items-center p-5 pt-8">
-      <h2 className="text-xl font-medium md:mb-7 mb-2">Select an Ambience</h2>
+      <h1 className="text-xl font-medium md:mb-7 mb-2">Select an Ambience</h1>
       <div className="flex justify-center gap-5 mb-4 hidden md:flex">
         <AmbiencesPanel listTitle="Default Ambiences" ambiences={defaultAmbiences} defaultAmbiences />
         <AmbiencesPanel listTitle="Your Saved Ambiences" ambiences={savedAmbiences} defaultAmbiences={false} />

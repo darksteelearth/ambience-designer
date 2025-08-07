@@ -19,12 +19,12 @@ const NavBar = () => {
 
   return (
     <nav className="flex justify-between items-center p-2 border-b fixed top-0 left-0 right-0 z-50 bg-white">
-        <Button variant="ghost" onClick={handleClickHome} className="flex items-center">
+        <Button variant="ghost" onClick={handleClickHome} className="flex items-center" title="home">
           <Home />
         </Button>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="flex items-center">
+          <Button variant="ghost" className="flex items-center" title="user">
             <User />
           </Button>
         </DropdownMenuTrigger>

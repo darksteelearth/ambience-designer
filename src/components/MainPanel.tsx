@@ -42,11 +42,11 @@ const MainPanel = () => {
     <div>
       <div className="flex p-3 pl-8 pr-8 justify-center">
         <div className="flex w-full max-w-4xl justify-between">
-          <h2 className="flex text-lg sm:text-xl font-medium items-center translate-y-0.5">Ambience Designer</h2>
+          <h1 className="flex text-lg sm:text-xl font-medium items-center translate-y-0.5">Ambience Designer</h1>
           <div className="flex gap-3">
             <Popover>
               <PopoverTrigger asChild>
-                <Button variant="outline">
+                <Button variant="outline" title="global-volume">
                   {globalVolume === 0 ? <VolumeX /> : globalVolume < 0.5 ? <Volume1 /> : <Volume2 />}
                 </Button>
               </PopoverTrigger>

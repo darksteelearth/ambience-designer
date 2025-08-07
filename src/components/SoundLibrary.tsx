@@ -13,7 +13,7 @@ const SoundLibrary = () => {
         <Tabs defaultValue="search" className="flex w-full">
           <ScrollAreaWithArrows tabslayout="true" showscrollbar="false" orientation="horizontal" className="w-full self-center mb-2 max-w-3xl">
             <TabsList className="bg-transparent">
-              <TabsTrigger value="search">
+              <TabsTrigger value="search" title="search-tab">
                 <Search />
               </TabsTrigger>
               <TabsTrigger value="nature_sounds">Nature Sounds</TabsTrigger>

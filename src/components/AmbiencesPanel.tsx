@@ -30,7 +30,7 @@ const AmbiencesPanel = ({ listTitle, ambiences, defaultAmbiences }: { listTitle?
         <div>
             {listTitle && (
                 <div className="flex justify-center pb-3">
-                    <h4 className="text-md leading-none font-medium">{listTitle}</h4>
+                    <h2 className="text-md leading-none font-medium">{listTitle}</h2>
                 </div>)
             }
             <ScrollAreaWithArrows showscrollbar="true" orientation="vertical" className="h-[calc(70vh-70px)] border rounded-sm shadow-xs bg-gray-50/50">

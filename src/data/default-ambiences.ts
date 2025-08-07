@@ -31,12 +31,12 @@ export const defaultAmbiences = [
             {
                 cellId: 2,
                 soundId: 16,
-                volume: 0.5
+                volume: 0.3
             },
             {
                 cellId: 3,
                 soundId: 24,
-                volume: 0.3
+                volume: 0.05
             },
         ]
     },

@@ -22,7 +22,7 @@ const LibraryCell = ({ soundId, title, icon }: { soundId: number, title: string,
                     </div>
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <Button onClick={handleAdd} variant="outline" size="sm" className="absolute w-5 h-5.5 -top-2 -right-2 rounded-xl border-sky-200 hover:bg-sky-100 z-10">
+                            <Button onClick={handleAdd} variant="outline" size="sm" className="absolute w-5 h-5.5 -top-2 -right-2 rounded-xl border-sky-200 hover:bg-sky-100 z-10" title="add-sound">
                                 <Plus className="stroke-sky-500 size-3.5" />
                             </Button>
                         </TooltipTrigger>

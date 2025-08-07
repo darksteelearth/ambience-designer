@@ -39,7 +39,7 @@ const AmbienceCell = ({ ambience, createCell, userAmbience }: { ambience: Ambien
         </>
       ) : (
         <>
-          {userAmbience && <Checkbox checked={isSelected()} onCheckedChange={handleSelect} className="relative top-2 left-1/2 -translate-x-4" />}
+          {userAmbience && <Checkbox checked={isSelected()} onCheckedChange={handleSelect} className="relative top-2 left-1/2 -translate-x-4" title="select-checkbox" />}
           <div className="flex-grow flex items-center justify-center text-xs font-medium select-none">
             <p className="w-24 text-center text-pretty line-clamp-2 text-ellipsis">{ambience.title}</p>
           </div>

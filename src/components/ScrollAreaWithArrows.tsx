@@ -61,12 +61,12 @@ const ScrollAreaWithArrows = (props: ScrollAreaProps) => {
             {props.children}
             <>
                 <div className={`absolute transform ${props.orientation === "horizontal" ? "left-3 top-1/2 -translate-y-1/2" : "top-3 left-1/2 -translate-x-1/2"} transition transition-discrete ${canScrollLeftOrUp ? "" : "opacity-0 pointer-events-none"} z-20`}>
-                    <Button variant="outline" onClick={() => scrollBy(-150)} className="w-7 h-7 rounded-xl shadow-md">
+                    <Button variant="outline" onClick={() => scrollBy(-150)} className="w-7 h-7 rounded-xl shadow-md" title="scroll-backward">
                         {props.orientation === "horizontal" ? (<ChevronLeft />) : (<ChevronLeft className="rotate-90" />)}
                     </Button>
                 </div>
                 <div className={`absolute transform ${props.orientation === "horizontal" ? "right-3 top-1/2 -translate-y-1/2" : "bottom-3 left-1/2 -translate-x-1/2"} transition transition-discrete ${canScrollRightOrDown ? "" : "opacity-0 pointer-events-none"} z-20`}>
-                    <Button variant="outline" onClick={() => scrollBy(150)} className="w-7 h-7 rounded-xl shadow-md">
+                    <Button variant="outline" onClick={() => scrollBy(150)} className="w-7 h-7 rounded-xl shadow-md" title="scroll-forward">
                         {props.orientation === "horizontal" ? (<ChevronRight />) : (<ChevronRight className="rotate-90" />)}
                     </Button>
                 </div>
