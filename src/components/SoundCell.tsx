@@ -52,12 +52,12 @@ const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: st
           <div className="relative w-20 h-20">
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button onClick={handleRemove} variant="outline" size="sm" className="absolute -top-2 -right-2 w-5 h-5.5 rounded-xl z-10 border-red-200 hover:bg-red-100">
+                <Button onClick={handleRemove} variant="outline" size="sm" className="absolute -top-2 -right-2 w-5 h-5.5 rounded-xl z-10 border-red-200 hover:bg-red-100" title="return-sound-to-library">
                   <ArrowDown className="stroke-red-500 size-3" />
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>Return to Sound Library</p>
+                <p>Return Sound to Library</p>
               </TooltipContent>
             </Tooltip>
             <div className="absolute inset-0 rounded-md bg-sky-100/50 animate-ping [animation-timing-function:ease-in] [animation-duration:3s]"></div>
@@ -67,7 +67,7 @@ const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: st
             <Tooltip>
               <TooltipTrigger asChild>
                 <PopoverTrigger asChild>
-                  <Button variant="outline" size="sm" className="absolute -bottom-2 left-7 w-6 h-6 rounded-md z-10 shadow-md">
+                  <Button variant="outline" size="sm" className="absolute -bottom-2 left-7 w-6 h-6 rounded-md z-10 shadow-md" title="sound-volume">
                     {currentVolume === 0 ? <VolumeX className="size-3" /> :
                       currentVolume < 0.5 ? <Volume1 className="size-3" /> :
                         <Volume2 className="size-3" />}
