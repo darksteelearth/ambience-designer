@@ -62,7 +62,7 @@ const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: st
             </Tooltip>
             <div className="absolute inset-0 rounded-md bg-sky-100/50 animate-ping [animation-timing-function:ease-in] [animation-duration:3s]"></div>
             <div className="absolute flex justify-center items-center w-full h-full border border-sky-200/70 shadow-xs rounded-md bg-white">
-              <sound.icon className="size-5 text-sky-800" />
+              <sound.icon className="size-5" />
             </div>
             <Tooltip>
               <TooltipTrigger asChild>
