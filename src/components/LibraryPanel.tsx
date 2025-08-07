@@ -30,7 +30,7 @@ const LibraryPanel = ({ sounds, search }: { sounds: { id: number, title: string,
           </div>
         </div>}
       <div className="flex justify-center-safe">
-        <ScrollAreaWithArrows showscrollbar="true" orientation="horizontal" className="flex rounded-md shadow-sm border w-full max-w-3xl">
+        <ScrollAreaWithArrows showscrollbar="true" orientation="horizontal" className="flex rounded-md shadow-xs border w-full max-w-3xl">
           <div className="grid grid-rows-[96px_96px] gap-5 grid-flow-col p-6">
             {displayedSounds.length > 0 ?
               <>

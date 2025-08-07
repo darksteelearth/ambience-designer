@@ -17,8 +17,8 @@ const LibraryCell = ({ soundId, title, icon }: { soundId: number, title: string,
         <div className="flex-col flex items-center">
             <div className="flex justify-center">
                 <div className="relative w-15 h-15">
-                    <div className="flex justify-center items-center w-full h-full border bg-white shadow-xs rounded-md">
-                        {React.createElement(icon, { className: 'size-5 text-gray-500' })}
+                    <div className="flex justify-center items-center w-full h-full border border-sky-200/70 bg-white shadow-xs rounded-md">
+                        {React.createElement(icon, { className: 'size-5 text-sky-800' })}
                     </div>
                     <Tooltip>
                         <TooltipTrigger asChild>

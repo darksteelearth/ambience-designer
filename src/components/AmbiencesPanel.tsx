@@ -33,7 +33,7 @@ const AmbiencesPanel = ({ listTitle, ambiences, defaultAmbiences }: { listTitle?
                     <h4 className="text-md leading-none font-medium">{listTitle}</h4>
                 </div>)
             }
-            <ScrollAreaWithArrows showscrollbar="true" orientation="vertical" className="h-[calc(70vh-70px)] border rounded-sm">
+            <ScrollAreaWithArrows showscrollbar="true" orientation="vertical" className="h-[calc(70vh-70px)] border rounded-sm shadow-xs bg-gray-50/50">
                 <div className="p-5">
                     {defaultAmbiences && (
                         <>

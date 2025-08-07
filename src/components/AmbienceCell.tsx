@@ -27,11 +27,11 @@ const AmbienceCell = ({ ambience, createCell, userAmbience }: { ambience: Ambien
   }
 
   return (
-    <div className="w-full aspect-[1/1] border rounded-sm flex flex-col items-center justify-between bg-white">
+    <div className="w-full aspect-[1/1] border shadow-xs rounded-sm flex flex-col items-center justify-between bg-white">
       {createCell ? (
         <>
           <Button variant="ghost"
-            className="flex flex-col w-33 h-full text-sm rounded-sm shadow-none"
+            className="flex flex-col w-33 h-full text-sm rounded-sm"
             onClick={handleClick}>
             <Plus />
             <p className="w-24 text-center text-pretty line-clamp-2 text-ellipsis whitespace-normal">Create New Ambience</p>
@@ -44,7 +44,7 @@ const AmbienceCell = ({ ambience, createCell, userAmbience }: { ambience: Ambien
             <p className="w-24 text-center text-pretty line-clamp-2 text-ellipsis">{ambience.title}</p>
           </div>
           <Button
-            className="w-27 h-7 text-xs rounded-sm m-3 mb-3 shadow-sm bg-sky-500/90 hover:bg-sky-500"
+            className="w-27 h-7 text-xs rounded-sm m-3 mb-3 shadow-xs text-black bg-sky-50 border border-sky-200 hover:bg-sky-200/70"
             onClick={handleClick}>
             Open Ambience
           </Button>

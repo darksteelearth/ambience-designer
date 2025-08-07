@@ -23,7 +23,7 @@ const HomePanel = () => {
 
   const HeaderCell = ({ icon }: { icon: LucideIcon }) => {
     return (
-      <div className="flex justify-center items-center w-15 h-15 border rounded-md bg-white shadow-xs">
+      <div className="flex justify-center items-center w-15 h-15 border border-sky-200/70 rounded-md bg-white shadow-xs">
         {React.createElement(icon, { className: "size-5" })}
       </div>
     )
@@ -36,12 +36,12 @@ const HomePanel = () => {
         <p className="text-center sm:text-2xl text-xl w-90 sm:w-full text-gray-500 p-2">Combine sounds to create your own sound world.</p>
       </header>
         <div className="flex w-100 md:w-170 lg:w-200 overflow-hidden min-h-35 p-10">
-          <div className="flex grid grid-flow-col justify-center items-center text-gray-500 gap-15 pr-15 infinite-scroll">
+          <div className="flex grid grid-flow-col justify-center items-center text-sky-800 gap-15 pr-15 infinite-scroll">
             {headerCellIcons.map((icon, key) => (
               <HeaderCell key={key} icon={icon} />
             ))}
           </div>
-          <div className="flex grid grid-flow-col justify-center items-center text-gray-500 gap-15 pr-15 infinite-scroll">
+          <div className="flex grid grid-flow-col justify-center items-center text-sky-800 gap-15 pr-15 infinite-scroll">
             {headerCellIcons.map((icon, key) => (
               <HeaderCell key={key} icon={icon} />
             ))}
