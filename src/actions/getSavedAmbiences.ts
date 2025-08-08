@@ -2,12 +2,16 @@
 
 import { Ambience } from "@/data/config";
 import prisma from "../../lib/prisma";
+import { getServerSession } from "next-auth";
 
 export async function getSavedAmbiences() {
-    const email = "chin.jef@northeastern.edu"
+    const session = await getServerSession();
+    const email = session?.user?.email;
+    if (!email) return []
+
     const userAmbiences = await prisma.user.findUnique({
         where: {
-            email: email
+            email
         },
         select: {
             ambiences: {

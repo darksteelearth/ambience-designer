@@ -12,18 +12,21 @@ import { useEffect, useState } from "react"
 import { useInputStore } from "@/stores/selectPanelSearchInput"
 import { useSelectedStore } from "@/stores/selectedAmbiences"
 import { filterItems } from "@/actions/filterItems"
+import { useSession } from "next-auth/react"
 
 const AmbiencesPanel = ({ listTitle, ambiences, defaultAmbiences }: { listTitle?: string, ambiences: Ambience[] | null, defaultAmbiences: boolean }) => {
+
     const [displayedAmbiences, setDisplayedAmbiences] = useState(ambiences);
     const { input, updateInput } = useInputStore();
     const selected = useSelectedStore(state => state.selected);
+    const { data: session, status } = useSession();
 
     useEffect(() => {
         if (!ambiences) return;
         if (!defaultAmbiences) { if (!displayedAmbiences) setDisplayedAmbiences(ambiences); return };
         const filteredAmbiences = filterItems(ambiences, input);
         setDisplayedAmbiences(filteredAmbiences);
-         // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ambiences, input])
 
     return (
@@ -53,14 +56,14 @@ const AmbiencesPanel = ({ listTitle, ambiences, defaultAmbiences }: { listTitle?
                                     <AmbienceCell key={ambience["title"]} ambience={{ title: ambience["title"], config: ambience["config"] }} createCell={false} userAmbience={!defaultAmbiences} />
                                 ))}
                             </>
-                        ) : <LoadingSpinner />}
+                        ) : status === "authenticated" && <LoadingSpinner />}
                     </div>
                 </div>
             </ScrollAreaWithArrows>
-            {!defaultAmbiences && 
-            <div className={`flex justify-center mt-3 ${selected.length <= 0 && "hidden"}`}>
-                <DeleteButton displayedAmbiences={displayedAmbiences} setDisplayedAmbiences={setDisplayedAmbiences}/>
-            </div>}
+            {!defaultAmbiences &&
+                <div className={`flex justify-center mt-3 ${selected.length <= 0 && "hidden"}`}>
+                    <DeleteButton displayedAmbiences={displayedAmbiences} setDisplayedAmbiences={setDisplayedAmbiences} />
+                </div>}
         </div>
     )
 }

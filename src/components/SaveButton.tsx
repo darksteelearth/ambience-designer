@@ -9,6 +9,7 @@ import { checkIfAmbienceExists } from '@/actions/checkIfAmbienceExists';
 import { saveAmbience } from '@/actions/saveAmbience';
 import { updateAmbience } from '@/actions/updateAmbience';
 import SaveAmbienceForm from './SaveAmbienceForm';
+import { useSession } from 'next-auth/react';
 
 const SaveButton = () => {
     const [saveDialogOpen, setSaveDialogOpen] = useState(false);
@@ -18,6 +19,7 @@ const SaveButton = () => {
     const [name, setName] = useState("");
     const [loading, setLoading] = useState(false);
     const { config, updateConfig } = useAmbienceStore();
+    const { data: session, status } = useSession();
 
     const handleSubmit = async (name: string) => {
         setName(name)
@@ -63,7 +65,7 @@ const SaveButton = () => {
         <>
             <Dialog open={saveDialogOpen} onOpenChange={setSaveDialogOpen}>
                 <DialogTrigger asChild>
-                    <Button variant="outline" disabled={config.length <= 0} className="text-sm">
+                    <Button variant="outline" disabled={config.length <= 0 || status === "unauthenticated"} className="text-sm">
                         Save Ambience...
                     </Button>
                 </DialogTrigger>

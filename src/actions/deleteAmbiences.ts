@@ -1,11 +1,16 @@
 'use server'
 
+import { getServerSession } from "next-auth";
 import prisma from "../../lib/prisma";
 
 export async function deleteAmbiences(ambiences: string[]) {
+    const session = await getServerSession();
+    const email = session?.user?.email;
+    if (!email) return;
+
     const user = await prisma.user.findUnique({
         where: {
-            email: "chin.jef@northeastern.edu"
+            email
         }
     })
 

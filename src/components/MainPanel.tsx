@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation';
 import { useAmbienceStore } from '@/stores/ambienceStore';
 import { useSelectedStore } from '@/stores/selectedAmbiences';
 import { useInputStore } from '@/stores/selectPanelSearchInput';
+import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { equalAmbiences } from '@/actions/equalAmbiences';
 
@@ -21,6 +22,7 @@ const MainPanel = () => {
   const [showVolumePercentage, setShowVolumePercentage] = useState(false);
   const setSelected = useSelectedStore(state => state.setSelected);
   const updateInput = useInputStore(state => state.updateInput);
+  const { data: session, status } = useSession();
   const navGuard = useNavigationGuard({
     enabled: !equalAmbiences(config, originalConfig) && config.length > 0,
     confirm: () => window.confirm("You have unsaved changes. Are you sure you wish to leave this page?")
@@ -82,6 +84,11 @@ const MainPanel = () => {
       <SoundLibrary />
       <div className="pt-3 pl-8 pr-8 pb-8 flex justify-center">
         <div className="flex w-full max-w-4xl justify-end">
+          {status === "unauthenticated" &&
+            <p className="text-xs flex items-center text-center pr-4 text-gray-500">
+              Sign in to save your ambience.
+            </p>
+          }
           <SaveButton />
         </div>
       </div>

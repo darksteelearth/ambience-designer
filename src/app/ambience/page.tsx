@@ -1,10 +1,14 @@
 'use client'
 
 import MainPanel from '@/components/MainPanel'
+import NavBar from '@/components/NavBar'
 
 const AmbiencePage = () => {
   return (
-    <MainPanel />
+    <>
+      <NavBar />
+      <MainPanel />
+    </>
   )
 }
 

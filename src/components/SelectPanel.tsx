@@ -6,20 +6,24 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs'
 import { getSavedAmbiences } from "@/actions/getSavedAmbiences";
 import { useEffect, useState } from 'react';
 import { Ambience } from '@/data/config';
+import { useSession } from 'next-auth/react';
 
 const SelectPanel = () => {
   const [savedAmbiences, setSavedAmbiences] = useState<Ambience[] | null>(null);
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     (async () => {
-      try {
-        const ambiences = await getSavedAmbiences();
-        setSavedAmbiences(ambiences);
-      } catch (error) {
-        console.error('Error fetching ambiences:', error);
+      if (status === "authenticated") {
+        try {
+          const ambiences = await getSavedAmbiences();
+          setSavedAmbiences(ambiences);
+        } catch (error) {
+          console.error('Error fetching ambiences:', error);
+        }
       }
     })();
-  }, []);
+  }, [status]);
 
   return (
     <div className="justify-content-center flex flex-col items-center p-5 pt-8">

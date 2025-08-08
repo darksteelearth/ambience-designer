@@ -1,10 +1,14 @@
 'use client'
 
+import NavBar from "@/components/NavBar"
 import SelectPanel from "@/components/SelectPanel"
 
 const selectPage = () => {
   return (
-    <SelectPanel />
+    <>
+      <NavBar />
+      <SelectPanel />
+    </>
   )
 }
 
