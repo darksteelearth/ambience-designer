@@ -14,11 +14,13 @@ import { useAmbienceStore } from '@/stores/ambienceStore';
 import { useSelectedStore } from '@/stores/selectedAmbiences';
 import { useInputStore } from '@/stores/selectPanelSearchInput';
 import { useSession } from 'next-auth/react';
+import { useSoundUsageStore } from '@/stores/soundUsageStore';
 import { useEffect, useState } from 'react';
 import { equalAmbiences } from '@/actions/equalAmbiences';
 
 const MainPanel = () => {
   const { config, originalConfig, globalVolume, updateGlobalVolume } = useAmbienceStore();
+  const { data, addSoundUsage } = useSoundUsageStore();
   const [showVolumePercentage, setShowVolumePercentage] = useState(false);
   const setSelected = useSelectedStore(state => state.setSelected);
   const updateInput = useInputStore(state => state.updateInput);
@@ -28,9 +30,38 @@ const MainPanel = () => {
     confirm: () => window.confirm("You have unsaved changes. Are you sure you wish to leave this page?")
   });
 
+  // On reload, browser close, or tab close, send data to the server:
+  if (typeof document !== "undefined") {
+    document.onvisibilitychange = () => {
+      if (document.visibilityState === "hidden") {
+        const sendData = data.reduce<Record<number, { t: number, p: number, a: number, r: number }>>((acc, item) => {
+          // For each sound listened to, log:
+          // t: total seconds listened
+          // p: total plays (including plays of loaded sounds from default and saved ambiences)
+          // a: times added
+          // r: times removed
+          if (!acc[item.soundId]) acc[item.soundId] = { t: 0, p: 0, a: 0, r: 0 }
+          acc[item.soundId].t += item.secondsListened;
+          acc[item.soundId].p += 1;
+          acc[item.soundId].a += item.added ? 1 : 0;
+          acc[item.soundId].r += item.removed ? 1 : 0;
+          return acc;
+        }, {})
+
+        navigator.sendBeacon("/api/log", JSON.stringify(sendData));
+      }
+    };
+  }
+
   useEffect(() => {
+    // Reset selection panel data:
     setSelected([]);
     updateInput("");
+
+    // Initialize sound usage data:
+    for (const sound of config) {
+      addSoundUsage(sound.cellId, sound.soundId, 0);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

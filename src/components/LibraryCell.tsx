@@ -4,13 +4,17 @@ import { Button } from './ui/button'
 import { LucideIcon, Plus } from 'lucide-react'
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip'
 import { useAmbienceStore } from '@/stores/ambienceStore'
+import { useSoundUsageStore } from '@/stores/soundUsageStore'
 import React from 'react'
 
 const LibraryCell = ({ soundId, title, icon }: { soundId: number, title: string, icon: LucideIcon }) => {
-    const { addSound } = useAmbienceStore();
+    const addSound = useAmbienceStore((state) => state.addSound);
+    const addSoundUsage = useSoundUsageStore((state) => state.addSoundUsage);
 
     const handleAdd = () => {
-        addSound(soundId);
+        const cellId = Date.now();
+        addSound(cellId, soundId);
+        addSoundUsage(cellId, soundId, 1);
     };
 
     return (

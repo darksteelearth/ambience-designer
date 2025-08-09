@@ -28,6 +28,11 @@ export type Ambience = $Result.DefaultSelection<Prisma.$AmbiencePayload>
  * 
  */
 export type Sound = $Result.DefaultSelection<Prisma.$SoundPayload>
+/**
+ * Model GlobalSoundData
+ * 
+ */
+export type GlobalSoundData = $Result.DefaultSelection<Prisma.$GlobalSoundDataPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -183,6 +188,16 @@ export class PrismaClient<
     * ```
     */
   get sound(): Prisma.SoundDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.globalSoundData`: Exposes CRUD operations for the **GlobalSoundData** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GlobalSoundData
+    * const globalSoundData = await prisma.globalSoundData.findMany()
+    * ```
+    */
+  get globalSoundData(): Prisma.GlobalSoundDataDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -625,7 +640,8 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     Ambience: 'Ambience',
-    Sound: 'Sound'
+    Sound: 'Sound',
+    GlobalSoundData: 'GlobalSoundData'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -644,7 +660,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "ambience" | "sound"
+      modelProps: "user" | "ambience" | "sound" | "globalSoundData"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -870,6 +886,80 @@ export namespace Prisma {
           }
         }
       }
+      GlobalSoundData: {
+        payload: Prisma.$GlobalSoundDataPayload<ExtArgs>
+        fields: Prisma.GlobalSoundDataFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GlobalSoundDataFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalSoundDataPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GlobalSoundDataFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalSoundDataPayload>
+          }
+          findFirst: {
+            args: Prisma.GlobalSoundDataFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalSoundDataPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GlobalSoundDataFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalSoundDataPayload>
+          }
+          findMany: {
+            args: Prisma.GlobalSoundDataFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalSoundDataPayload>[]
+          }
+          create: {
+            args: Prisma.GlobalSoundDataCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalSoundDataPayload>
+          }
+          createMany: {
+            args: Prisma.GlobalSoundDataCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.GlobalSoundDataCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalSoundDataPayload>[]
+          }
+          delete: {
+            args: Prisma.GlobalSoundDataDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalSoundDataPayload>
+          }
+          update: {
+            args: Prisma.GlobalSoundDataUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalSoundDataPayload>
+          }
+          deleteMany: {
+            args: Prisma.GlobalSoundDataDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GlobalSoundDataUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.GlobalSoundDataUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalSoundDataPayload>[]
+          }
+          upsert: {
+            args: Prisma.GlobalSoundDataUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GlobalSoundDataPayload>
+          }
+          aggregate: {
+            args: Prisma.GlobalSoundDataAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGlobalSoundData>
+          }
+          groupBy: {
+            args: Prisma.GlobalSoundDataGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GlobalSoundDataGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GlobalSoundDataCountArgs<ExtArgs>
+            result: $Utils.Optional<GlobalSoundDataCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -957,6 +1047,7 @@ export namespace Prisma {
     user?: UserOmit
     ambience?: AmbienceOmit
     sound?: SoundOmit
+    globalSoundData?: GlobalSoundDataOmit
   }
 
   /* Types for Logging */
@@ -4382,6 +4473,1085 @@ export namespace Prisma {
 
 
   /**
+   * Model GlobalSoundData
+   */
+
+  export type AggregateGlobalSoundData = {
+    _count: GlobalSoundDataCountAggregateOutputType | null
+    _avg: GlobalSoundDataAvgAggregateOutputType | null
+    _sum: GlobalSoundDataSumAggregateOutputType | null
+    _min: GlobalSoundDataMinAggregateOutputType | null
+    _max: GlobalSoundDataMaxAggregateOutputType | null
+  }
+
+  export type GlobalSoundDataAvgAggregateOutputType = {
+    id: number | null
+    soundId: number | null
+    totalSecondsListened: number | null
+    totalPlays: number | null
+    averageSecondsListened: number | null
+    timesAdded: number | null
+    timesRemoved: number | null
+  }
+
+  export type GlobalSoundDataSumAggregateOutputType = {
+    id: number | null
+    soundId: number | null
+    totalSecondsListened: number | null
+    totalPlays: number | null
+    averageSecondsListened: number | null
+    timesAdded: number | null
+    timesRemoved: number | null
+  }
+
+  export type GlobalSoundDataMinAggregateOutputType = {
+    id: number | null
+    soundId: number | null
+    totalSecondsListened: number | null
+    totalPlays: number | null
+    averageSecondsListened: number | null
+    timesAdded: number | null
+    timesRemoved: number | null
+  }
+
+  export type GlobalSoundDataMaxAggregateOutputType = {
+    id: number | null
+    soundId: number | null
+    totalSecondsListened: number | null
+    totalPlays: number | null
+    averageSecondsListened: number | null
+    timesAdded: number | null
+    timesRemoved: number | null
+  }
+
+  export type GlobalSoundDataCountAggregateOutputType = {
+    id: number
+    soundId: number
+    totalSecondsListened: number
+    totalPlays: number
+    averageSecondsListened: number
+    timesAdded: number
+    timesRemoved: number
+    _all: number
+  }
+
+
+  export type GlobalSoundDataAvgAggregateInputType = {
+    id?: true
+    soundId?: true
+    totalSecondsListened?: true
+    totalPlays?: true
+    averageSecondsListened?: true
+    timesAdded?: true
+    timesRemoved?: true
+  }
+
+  export type GlobalSoundDataSumAggregateInputType = {
+    id?: true
+    soundId?: true
+    totalSecondsListened?: true
+    totalPlays?: true
+    averageSecondsListened?: true
+    timesAdded?: true
+    timesRemoved?: true
+  }
+
+  export type GlobalSoundDataMinAggregateInputType = {
+    id?: true
+    soundId?: true
+    totalSecondsListened?: true
+    totalPlays?: true
+    averageSecondsListened?: true
+    timesAdded?: true
+    timesRemoved?: true
+  }
+
+  export type GlobalSoundDataMaxAggregateInputType = {
+    id?: true
+    soundId?: true
+    totalSecondsListened?: true
+    totalPlays?: true
+    averageSecondsListened?: true
+    timesAdded?: true
+    timesRemoved?: true
+  }
+
+  export type GlobalSoundDataCountAggregateInputType = {
+    id?: true
+    soundId?: true
+    totalSecondsListened?: true
+    totalPlays?: true
+    averageSecondsListened?: true
+    timesAdded?: true
+    timesRemoved?: true
+    _all?: true
+  }
+
+  export type GlobalSoundDataAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GlobalSoundData to aggregate.
+     */
+    where?: GlobalSoundDataWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GlobalSoundData to fetch.
+     */
+    orderBy?: GlobalSoundDataOrderByWithRelationInput | GlobalSoundDataOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GlobalSoundDataWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GlobalSoundData from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GlobalSoundData.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GlobalSoundData
+    **/
+    _count?: true | GlobalSoundDataCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GlobalSoundDataAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GlobalSoundDataSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GlobalSoundDataMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GlobalSoundDataMaxAggregateInputType
+  }
+
+  export type GetGlobalSoundDataAggregateType<T extends GlobalSoundDataAggregateArgs> = {
+        [P in keyof T & keyof AggregateGlobalSoundData]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGlobalSoundData[P]>
+      : GetScalarType<T[P], AggregateGlobalSoundData[P]>
+  }
+
+
+
+
+  export type GlobalSoundDataGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GlobalSoundDataWhereInput
+    orderBy?: GlobalSoundDataOrderByWithAggregationInput | GlobalSoundDataOrderByWithAggregationInput[]
+    by: GlobalSoundDataScalarFieldEnum[] | GlobalSoundDataScalarFieldEnum
+    having?: GlobalSoundDataScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GlobalSoundDataCountAggregateInputType | true
+    _avg?: GlobalSoundDataAvgAggregateInputType
+    _sum?: GlobalSoundDataSumAggregateInputType
+    _min?: GlobalSoundDataMinAggregateInputType
+    _max?: GlobalSoundDataMaxAggregateInputType
+  }
+
+  export type GlobalSoundDataGroupByOutputType = {
+    id: number
+    soundId: number
+    totalSecondsListened: number
+    totalPlays: number
+    averageSecondsListened: number
+    timesAdded: number
+    timesRemoved: number
+    _count: GlobalSoundDataCountAggregateOutputType | null
+    _avg: GlobalSoundDataAvgAggregateOutputType | null
+    _sum: GlobalSoundDataSumAggregateOutputType | null
+    _min: GlobalSoundDataMinAggregateOutputType | null
+    _max: GlobalSoundDataMaxAggregateOutputType | null
+  }
+
+  type GetGlobalSoundDataGroupByPayload<T extends GlobalSoundDataGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GlobalSoundDataGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GlobalSoundDataGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GlobalSoundDataGroupByOutputType[P]>
+            : GetScalarType<T[P], GlobalSoundDataGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GlobalSoundDataSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    soundId?: boolean
+    totalSecondsListened?: boolean
+    totalPlays?: boolean
+    averageSecondsListened?: boolean
+    timesAdded?: boolean
+    timesRemoved?: boolean
+  }, ExtArgs["result"]["globalSoundData"]>
+
+  export type GlobalSoundDataSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    soundId?: boolean
+    totalSecondsListened?: boolean
+    totalPlays?: boolean
+    averageSecondsListened?: boolean
+    timesAdded?: boolean
+    timesRemoved?: boolean
+  }, ExtArgs["result"]["globalSoundData"]>
+
+  export type GlobalSoundDataSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    soundId?: boolean
+    totalSecondsListened?: boolean
+    totalPlays?: boolean
+    averageSecondsListened?: boolean
+    timesAdded?: boolean
+    timesRemoved?: boolean
+  }, ExtArgs["result"]["globalSoundData"]>
+
+  export type GlobalSoundDataSelectScalar = {
+    id?: boolean
+    soundId?: boolean
+    totalSecondsListened?: boolean
+    totalPlays?: boolean
+    averageSecondsListened?: boolean
+    timesAdded?: boolean
+    timesRemoved?: boolean
+  }
+
+  export type GlobalSoundDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "soundId" | "totalSecondsListened" | "totalPlays" | "averageSecondsListened" | "timesAdded" | "timesRemoved", ExtArgs["result"]["globalSoundData"]>
+
+  export type $GlobalSoundDataPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GlobalSoundData"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      soundId: number
+      totalSecondsListened: number
+      totalPlays: number
+      averageSecondsListened: number
+      timesAdded: number
+      timesRemoved: number
+    }, ExtArgs["result"]["globalSoundData"]>
+    composites: {}
+  }
+
+  type GlobalSoundDataGetPayload<S extends boolean | null | undefined | GlobalSoundDataDefaultArgs> = $Result.GetResult<Prisma.$GlobalSoundDataPayload, S>
+
+  type GlobalSoundDataCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<GlobalSoundDataFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: GlobalSoundDataCountAggregateInputType | true
+    }
+
+  export interface GlobalSoundDataDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GlobalSoundData'], meta: { name: 'GlobalSoundData' } }
+    /**
+     * Find zero or one GlobalSoundData that matches the filter.
+     * @param {GlobalSoundDataFindUniqueArgs} args - Arguments to find a GlobalSoundData
+     * @example
+     * // Get one GlobalSoundData
+     * const globalSoundData = await prisma.globalSoundData.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends GlobalSoundDataFindUniqueArgs>(args: SelectSubset<T, GlobalSoundDataFindUniqueArgs<ExtArgs>>): Prisma__GlobalSoundDataClient<$Result.GetResult<Prisma.$GlobalSoundDataPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one GlobalSoundData that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {GlobalSoundDataFindUniqueOrThrowArgs} args - Arguments to find a GlobalSoundData
+     * @example
+     * // Get one GlobalSoundData
+     * const globalSoundData = await prisma.globalSoundData.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends GlobalSoundDataFindUniqueOrThrowArgs>(args: SelectSubset<T, GlobalSoundDataFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GlobalSoundDataClient<$Result.GetResult<Prisma.$GlobalSoundDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GlobalSoundData that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GlobalSoundDataFindFirstArgs} args - Arguments to find a GlobalSoundData
+     * @example
+     * // Get one GlobalSoundData
+     * const globalSoundData = await prisma.globalSoundData.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends GlobalSoundDataFindFirstArgs>(args?: SelectSubset<T, GlobalSoundDataFindFirstArgs<ExtArgs>>): Prisma__GlobalSoundDataClient<$Result.GetResult<Prisma.$GlobalSoundDataPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GlobalSoundData that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GlobalSoundDataFindFirstOrThrowArgs} args - Arguments to find a GlobalSoundData
+     * @example
+     * // Get one GlobalSoundData
+     * const globalSoundData = await prisma.globalSoundData.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends GlobalSoundDataFindFirstOrThrowArgs>(args?: SelectSubset<T, GlobalSoundDataFindFirstOrThrowArgs<ExtArgs>>): Prisma__GlobalSoundDataClient<$Result.GetResult<Prisma.$GlobalSoundDataPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more GlobalSoundData that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GlobalSoundDataFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GlobalSoundData
+     * const globalSoundData = await prisma.globalSoundData.findMany()
+     * 
+     * // Get first 10 GlobalSoundData
+     * const globalSoundData = await prisma.globalSoundData.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const globalSoundDataWithIdOnly = await prisma.globalSoundData.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends GlobalSoundDataFindManyArgs>(args?: SelectSubset<T, GlobalSoundDataFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GlobalSoundDataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a GlobalSoundData.
+     * @param {GlobalSoundDataCreateArgs} args - Arguments to create a GlobalSoundData.
+     * @example
+     * // Create one GlobalSoundData
+     * const GlobalSoundData = await prisma.globalSoundData.create({
+     *   data: {
+     *     // ... data to create a GlobalSoundData
+     *   }
+     * })
+     * 
+     */
+    create<T extends GlobalSoundDataCreateArgs>(args: SelectSubset<T, GlobalSoundDataCreateArgs<ExtArgs>>): Prisma__GlobalSoundDataClient<$Result.GetResult<Prisma.$GlobalSoundDataPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many GlobalSoundData.
+     * @param {GlobalSoundDataCreateManyArgs} args - Arguments to create many GlobalSoundData.
+     * @example
+     * // Create many GlobalSoundData
+     * const globalSoundData = await prisma.globalSoundData.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends GlobalSoundDataCreateManyArgs>(args?: SelectSubset<T, GlobalSoundDataCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many GlobalSoundData and returns the data saved in the database.
+     * @param {GlobalSoundDataCreateManyAndReturnArgs} args - Arguments to create many GlobalSoundData.
+     * @example
+     * // Create many GlobalSoundData
+     * const globalSoundData = await prisma.globalSoundData.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many GlobalSoundData and only return the `id`
+     * const globalSoundDataWithIdOnly = await prisma.globalSoundData.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends GlobalSoundDataCreateManyAndReturnArgs>(args?: SelectSubset<T, GlobalSoundDataCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GlobalSoundDataPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a GlobalSoundData.
+     * @param {GlobalSoundDataDeleteArgs} args - Arguments to delete one GlobalSoundData.
+     * @example
+     * // Delete one GlobalSoundData
+     * const GlobalSoundData = await prisma.globalSoundData.delete({
+     *   where: {
+     *     // ... filter to delete one GlobalSoundData
+     *   }
+     * })
+     * 
+     */
+    delete<T extends GlobalSoundDataDeleteArgs>(args: SelectSubset<T, GlobalSoundDataDeleteArgs<ExtArgs>>): Prisma__GlobalSoundDataClient<$Result.GetResult<Prisma.$GlobalSoundDataPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one GlobalSoundData.
+     * @param {GlobalSoundDataUpdateArgs} args - Arguments to update one GlobalSoundData.
+     * @example
+     * // Update one GlobalSoundData
+     * const globalSoundData = await prisma.globalSoundData.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends GlobalSoundDataUpdateArgs>(args: SelectSubset<T, GlobalSoundDataUpdateArgs<ExtArgs>>): Prisma__GlobalSoundDataClient<$Result.GetResult<Prisma.$GlobalSoundDataPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more GlobalSoundData.
+     * @param {GlobalSoundDataDeleteManyArgs} args - Arguments to filter GlobalSoundData to delete.
+     * @example
+     * // Delete a few GlobalSoundData
+     * const { count } = await prisma.globalSoundData.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends GlobalSoundDataDeleteManyArgs>(args?: SelectSubset<T, GlobalSoundDataDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GlobalSoundData.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GlobalSoundDataUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GlobalSoundData
+     * const globalSoundData = await prisma.globalSoundData.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends GlobalSoundDataUpdateManyArgs>(args: SelectSubset<T, GlobalSoundDataUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GlobalSoundData and returns the data updated in the database.
+     * @param {GlobalSoundDataUpdateManyAndReturnArgs} args - Arguments to update many GlobalSoundData.
+     * @example
+     * // Update many GlobalSoundData
+     * const globalSoundData = await prisma.globalSoundData.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more GlobalSoundData and only return the `id`
+     * const globalSoundDataWithIdOnly = await prisma.globalSoundData.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends GlobalSoundDataUpdateManyAndReturnArgs>(args: SelectSubset<T, GlobalSoundDataUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GlobalSoundDataPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one GlobalSoundData.
+     * @param {GlobalSoundDataUpsertArgs} args - Arguments to update or create a GlobalSoundData.
+     * @example
+     * // Update or create a GlobalSoundData
+     * const globalSoundData = await prisma.globalSoundData.upsert({
+     *   create: {
+     *     // ... data to create a GlobalSoundData
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GlobalSoundData we want to update
+     *   }
+     * })
+     */
+    upsert<T extends GlobalSoundDataUpsertArgs>(args: SelectSubset<T, GlobalSoundDataUpsertArgs<ExtArgs>>): Prisma__GlobalSoundDataClient<$Result.GetResult<Prisma.$GlobalSoundDataPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of GlobalSoundData.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GlobalSoundDataCountArgs} args - Arguments to filter GlobalSoundData to count.
+     * @example
+     * // Count the number of GlobalSoundData
+     * const count = await prisma.globalSoundData.count({
+     *   where: {
+     *     // ... the filter for the GlobalSoundData we want to count
+     *   }
+     * })
+    **/
+    count<T extends GlobalSoundDataCountArgs>(
+      args?: Subset<T, GlobalSoundDataCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GlobalSoundDataCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GlobalSoundData.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GlobalSoundDataAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GlobalSoundDataAggregateArgs>(args: Subset<T, GlobalSoundDataAggregateArgs>): Prisma.PrismaPromise<GetGlobalSoundDataAggregateType<T>>
+
+    /**
+     * Group by GlobalSoundData.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GlobalSoundDataGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GlobalSoundDataGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GlobalSoundDataGroupByArgs['orderBy'] }
+        : { orderBy?: GlobalSoundDataGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GlobalSoundDataGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGlobalSoundDataGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GlobalSoundData model
+   */
+  readonly fields: GlobalSoundDataFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GlobalSoundData.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GlobalSoundDataClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the GlobalSoundData model
+   */
+  interface GlobalSoundDataFieldRefs {
+    readonly id: FieldRef<"GlobalSoundData", 'Int'>
+    readonly soundId: FieldRef<"GlobalSoundData", 'Int'>
+    readonly totalSecondsListened: FieldRef<"GlobalSoundData", 'Int'>
+    readonly totalPlays: FieldRef<"GlobalSoundData", 'Int'>
+    readonly averageSecondsListened: FieldRef<"GlobalSoundData", 'Int'>
+    readonly timesAdded: FieldRef<"GlobalSoundData", 'Int'>
+    readonly timesRemoved: FieldRef<"GlobalSoundData", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * GlobalSoundData findUnique
+   */
+  export type GlobalSoundDataFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalSoundData
+     */
+    select?: GlobalSoundDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalSoundData
+     */
+    omit?: GlobalSoundDataOmit<ExtArgs> | null
+    /**
+     * Filter, which GlobalSoundData to fetch.
+     */
+    where: GlobalSoundDataWhereUniqueInput
+  }
+
+  /**
+   * GlobalSoundData findUniqueOrThrow
+   */
+  export type GlobalSoundDataFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalSoundData
+     */
+    select?: GlobalSoundDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalSoundData
+     */
+    omit?: GlobalSoundDataOmit<ExtArgs> | null
+    /**
+     * Filter, which GlobalSoundData to fetch.
+     */
+    where: GlobalSoundDataWhereUniqueInput
+  }
+
+  /**
+   * GlobalSoundData findFirst
+   */
+  export type GlobalSoundDataFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalSoundData
+     */
+    select?: GlobalSoundDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalSoundData
+     */
+    omit?: GlobalSoundDataOmit<ExtArgs> | null
+    /**
+     * Filter, which GlobalSoundData to fetch.
+     */
+    where?: GlobalSoundDataWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GlobalSoundData to fetch.
+     */
+    orderBy?: GlobalSoundDataOrderByWithRelationInput | GlobalSoundDataOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GlobalSoundData.
+     */
+    cursor?: GlobalSoundDataWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GlobalSoundData from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GlobalSoundData.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GlobalSoundData.
+     */
+    distinct?: GlobalSoundDataScalarFieldEnum | GlobalSoundDataScalarFieldEnum[]
+  }
+
+  /**
+   * GlobalSoundData findFirstOrThrow
+   */
+  export type GlobalSoundDataFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalSoundData
+     */
+    select?: GlobalSoundDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalSoundData
+     */
+    omit?: GlobalSoundDataOmit<ExtArgs> | null
+    /**
+     * Filter, which GlobalSoundData to fetch.
+     */
+    where?: GlobalSoundDataWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GlobalSoundData to fetch.
+     */
+    orderBy?: GlobalSoundDataOrderByWithRelationInput | GlobalSoundDataOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GlobalSoundData.
+     */
+    cursor?: GlobalSoundDataWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GlobalSoundData from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GlobalSoundData.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GlobalSoundData.
+     */
+    distinct?: GlobalSoundDataScalarFieldEnum | GlobalSoundDataScalarFieldEnum[]
+  }
+
+  /**
+   * GlobalSoundData findMany
+   */
+  export type GlobalSoundDataFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalSoundData
+     */
+    select?: GlobalSoundDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalSoundData
+     */
+    omit?: GlobalSoundDataOmit<ExtArgs> | null
+    /**
+     * Filter, which GlobalSoundData to fetch.
+     */
+    where?: GlobalSoundDataWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GlobalSoundData to fetch.
+     */
+    orderBy?: GlobalSoundDataOrderByWithRelationInput | GlobalSoundDataOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GlobalSoundData.
+     */
+    cursor?: GlobalSoundDataWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GlobalSoundData from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GlobalSoundData.
+     */
+    skip?: number
+    distinct?: GlobalSoundDataScalarFieldEnum | GlobalSoundDataScalarFieldEnum[]
+  }
+
+  /**
+   * GlobalSoundData create
+   */
+  export type GlobalSoundDataCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalSoundData
+     */
+    select?: GlobalSoundDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalSoundData
+     */
+    omit?: GlobalSoundDataOmit<ExtArgs> | null
+    /**
+     * The data needed to create a GlobalSoundData.
+     */
+    data: XOR<GlobalSoundDataCreateInput, GlobalSoundDataUncheckedCreateInput>
+  }
+
+  /**
+   * GlobalSoundData createMany
+   */
+  export type GlobalSoundDataCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GlobalSoundData.
+     */
+    data: GlobalSoundDataCreateManyInput | GlobalSoundDataCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GlobalSoundData createManyAndReturn
+   */
+  export type GlobalSoundDataCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalSoundData
+     */
+    select?: GlobalSoundDataSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalSoundData
+     */
+    omit?: GlobalSoundDataOmit<ExtArgs> | null
+    /**
+     * The data used to create many GlobalSoundData.
+     */
+    data: GlobalSoundDataCreateManyInput | GlobalSoundDataCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GlobalSoundData update
+   */
+  export type GlobalSoundDataUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalSoundData
+     */
+    select?: GlobalSoundDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalSoundData
+     */
+    omit?: GlobalSoundDataOmit<ExtArgs> | null
+    /**
+     * The data needed to update a GlobalSoundData.
+     */
+    data: XOR<GlobalSoundDataUpdateInput, GlobalSoundDataUncheckedUpdateInput>
+    /**
+     * Choose, which GlobalSoundData to update.
+     */
+    where: GlobalSoundDataWhereUniqueInput
+  }
+
+  /**
+   * GlobalSoundData updateMany
+   */
+  export type GlobalSoundDataUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GlobalSoundData.
+     */
+    data: XOR<GlobalSoundDataUpdateManyMutationInput, GlobalSoundDataUncheckedUpdateManyInput>
+    /**
+     * Filter which GlobalSoundData to update
+     */
+    where?: GlobalSoundDataWhereInput
+    /**
+     * Limit how many GlobalSoundData to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GlobalSoundData updateManyAndReturn
+   */
+  export type GlobalSoundDataUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalSoundData
+     */
+    select?: GlobalSoundDataSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalSoundData
+     */
+    omit?: GlobalSoundDataOmit<ExtArgs> | null
+    /**
+     * The data used to update GlobalSoundData.
+     */
+    data: XOR<GlobalSoundDataUpdateManyMutationInput, GlobalSoundDataUncheckedUpdateManyInput>
+    /**
+     * Filter which GlobalSoundData to update
+     */
+    where?: GlobalSoundDataWhereInput
+    /**
+     * Limit how many GlobalSoundData to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GlobalSoundData upsert
+   */
+  export type GlobalSoundDataUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalSoundData
+     */
+    select?: GlobalSoundDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalSoundData
+     */
+    omit?: GlobalSoundDataOmit<ExtArgs> | null
+    /**
+     * The filter to search for the GlobalSoundData to update in case it exists.
+     */
+    where: GlobalSoundDataWhereUniqueInput
+    /**
+     * In case the GlobalSoundData found by the `where` argument doesn't exist, create a new GlobalSoundData with this data.
+     */
+    create: XOR<GlobalSoundDataCreateInput, GlobalSoundDataUncheckedCreateInput>
+    /**
+     * In case the GlobalSoundData was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GlobalSoundDataUpdateInput, GlobalSoundDataUncheckedUpdateInput>
+  }
+
+  /**
+   * GlobalSoundData delete
+   */
+  export type GlobalSoundDataDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalSoundData
+     */
+    select?: GlobalSoundDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalSoundData
+     */
+    omit?: GlobalSoundDataOmit<ExtArgs> | null
+    /**
+     * Filter which GlobalSoundData to delete.
+     */
+    where: GlobalSoundDataWhereUniqueInput
+  }
+
+  /**
+   * GlobalSoundData deleteMany
+   */
+  export type GlobalSoundDataDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GlobalSoundData to delete
+     */
+    where?: GlobalSoundDataWhereInput
+    /**
+     * Limit how many GlobalSoundData to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * GlobalSoundData without action
+   */
+  export type GlobalSoundDataDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GlobalSoundData
+     */
+    select?: GlobalSoundDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GlobalSoundData
+     */
+    omit?: GlobalSoundDataOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -4421,6 +5591,19 @@ export namespace Prisma {
   };
 
   export type SoundScalarFieldEnum = (typeof SoundScalarFieldEnum)[keyof typeof SoundScalarFieldEnum]
+
+
+  export const GlobalSoundDataScalarFieldEnum: {
+    id: 'id',
+    soundId: 'soundId',
+    totalSecondsListened: 'totalSecondsListened',
+    totalPlays: 'totalPlays',
+    averageSecondsListened: 'averageSecondsListened',
+    timesAdded: 'timesAdded',
+    timesRemoved: 'timesRemoved'
+  };
+
+  export type GlobalSoundDataScalarFieldEnum = (typeof GlobalSoundDataScalarFieldEnum)[keyof typeof GlobalSoundDataScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -4646,6 +5829,70 @@ export namespace Prisma {
     volume?: FloatWithAggregatesFilter<"Sound"> | number
   }
 
+  export type GlobalSoundDataWhereInput = {
+    AND?: GlobalSoundDataWhereInput | GlobalSoundDataWhereInput[]
+    OR?: GlobalSoundDataWhereInput[]
+    NOT?: GlobalSoundDataWhereInput | GlobalSoundDataWhereInput[]
+    id?: IntFilter<"GlobalSoundData"> | number
+    soundId?: IntFilter<"GlobalSoundData"> | number
+    totalSecondsListened?: IntFilter<"GlobalSoundData"> | number
+    totalPlays?: IntFilter<"GlobalSoundData"> | number
+    averageSecondsListened?: IntFilter<"GlobalSoundData"> | number
+    timesAdded?: IntFilter<"GlobalSoundData"> | number
+    timesRemoved?: IntFilter<"GlobalSoundData"> | number
+  }
+
+  export type GlobalSoundDataOrderByWithRelationInput = {
+    id?: SortOrder
+    soundId?: SortOrder
+    totalSecondsListened?: SortOrder
+    totalPlays?: SortOrder
+    averageSecondsListened?: SortOrder
+    timesAdded?: SortOrder
+    timesRemoved?: SortOrder
+  }
+
+  export type GlobalSoundDataWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    soundId?: number
+    AND?: GlobalSoundDataWhereInput | GlobalSoundDataWhereInput[]
+    OR?: GlobalSoundDataWhereInput[]
+    NOT?: GlobalSoundDataWhereInput | GlobalSoundDataWhereInput[]
+    totalSecondsListened?: IntFilter<"GlobalSoundData"> | number
+    totalPlays?: IntFilter<"GlobalSoundData"> | number
+    averageSecondsListened?: IntFilter<"GlobalSoundData"> | number
+    timesAdded?: IntFilter<"GlobalSoundData"> | number
+    timesRemoved?: IntFilter<"GlobalSoundData"> | number
+  }, "id" | "soundId">
+
+  export type GlobalSoundDataOrderByWithAggregationInput = {
+    id?: SortOrder
+    soundId?: SortOrder
+    totalSecondsListened?: SortOrder
+    totalPlays?: SortOrder
+    averageSecondsListened?: SortOrder
+    timesAdded?: SortOrder
+    timesRemoved?: SortOrder
+    _count?: GlobalSoundDataCountOrderByAggregateInput
+    _avg?: GlobalSoundDataAvgOrderByAggregateInput
+    _max?: GlobalSoundDataMaxOrderByAggregateInput
+    _min?: GlobalSoundDataMinOrderByAggregateInput
+    _sum?: GlobalSoundDataSumOrderByAggregateInput
+  }
+
+  export type GlobalSoundDataScalarWhereWithAggregatesInput = {
+    AND?: GlobalSoundDataScalarWhereWithAggregatesInput | GlobalSoundDataScalarWhereWithAggregatesInput[]
+    OR?: GlobalSoundDataScalarWhereWithAggregatesInput[]
+    NOT?: GlobalSoundDataScalarWhereWithAggregatesInput | GlobalSoundDataScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"GlobalSoundData"> | number
+    soundId?: IntWithAggregatesFilter<"GlobalSoundData"> | number
+    totalSecondsListened?: IntWithAggregatesFilter<"GlobalSoundData"> | number
+    totalPlays?: IntWithAggregatesFilter<"GlobalSoundData"> | number
+    averageSecondsListened?: IntWithAggregatesFilter<"GlobalSoundData"> | number
+    timesAdded?: IntWithAggregatesFilter<"GlobalSoundData"> | number
+    timesRemoved?: IntWithAggregatesFilter<"GlobalSoundData"> | number
+  }
+
   export type UserCreateInput = {
     email: string
     name?: string | null
@@ -4774,6 +6021,73 @@ export namespace Prisma {
     soundId?: IntFieldUpdateOperationsInput | number
     ambienceId?: IntFieldUpdateOperationsInput | number
     volume?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type GlobalSoundDataCreateInput = {
+    soundId: number
+    totalSecondsListened: number
+    totalPlays: number
+    averageSecondsListened: number
+    timesAdded: number
+    timesRemoved: number
+  }
+
+  export type GlobalSoundDataUncheckedCreateInput = {
+    id?: number
+    soundId: number
+    totalSecondsListened: number
+    totalPlays: number
+    averageSecondsListened: number
+    timesAdded: number
+    timesRemoved: number
+  }
+
+  export type GlobalSoundDataUpdateInput = {
+    soundId?: IntFieldUpdateOperationsInput | number
+    totalSecondsListened?: IntFieldUpdateOperationsInput | number
+    totalPlays?: IntFieldUpdateOperationsInput | number
+    averageSecondsListened?: IntFieldUpdateOperationsInput | number
+    timesAdded?: IntFieldUpdateOperationsInput | number
+    timesRemoved?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GlobalSoundDataUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    soundId?: IntFieldUpdateOperationsInput | number
+    totalSecondsListened?: IntFieldUpdateOperationsInput | number
+    totalPlays?: IntFieldUpdateOperationsInput | number
+    averageSecondsListened?: IntFieldUpdateOperationsInput | number
+    timesAdded?: IntFieldUpdateOperationsInput | number
+    timesRemoved?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GlobalSoundDataCreateManyInput = {
+    id?: number
+    soundId: number
+    totalSecondsListened: number
+    totalPlays: number
+    averageSecondsListened: number
+    timesAdded: number
+    timesRemoved: number
+  }
+
+  export type GlobalSoundDataUpdateManyMutationInput = {
+    soundId?: IntFieldUpdateOperationsInput | number
+    totalSecondsListened?: IntFieldUpdateOperationsInput | number
+    totalPlays?: IntFieldUpdateOperationsInput | number
+    averageSecondsListened?: IntFieldUpdateOperationsInput | number
+    timesAdded?: IntFieldUpdateOperationsInput | number
+    timesRemoved?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GlobalSoundDataUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    soundId?: IntFieldUpdateOperationsInput | number
+    totalSecondsListened?: IntFieldUpdateOperationsInput | number
+    totalPlays?: IntFieldUpdateOperationsInput | number
+    averageSecondsListened?: IntFieldUpdateOperationsInput | number
+    timesAdded?: IntFieldUpdateOperationsInput | number
+    timesRemoved?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -5018,6 +6332,56 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type GlobalSoundDataCountOrderByAggregateInput = {
+    id?: SortOrder
+    soundId?: SortOrder
+    totalSecondsListened?: SortOrder
+    totalPlays?: SortOrder
+    averageSecondsListened?: SortOrder
+    timesAdded?: SortOrder
+    timesRemoved?: SortOrder
+  }
+
+  export type GlobalSoundDataAvgOrderByAggregateInput = {
+    id?: SortOrder
+    soundId?: SortOrder
+    totalSecondsListened?: SortOrder
+    totalPlays?: SortOrder
+    averageSecondsListened?: SortOrder
+    timesAdded?: SortOrder
+    timesRemoved?: SortOrder
+  }
+
+  export type GlobalSoundDataMaxOrderByAggregateInput = {
+    id?: SortOrder
+    soundId?: SortOrder
+    totalSecondsListened?: SortOrder
+    totalPlays?: SortOrder
+    averageSecondsListened?: SortOrder
+    timesAdded?: SortOrder
+    timesRemoved?: SortOrder
+  }
+
+  export type GlobalSoundDataMinOrderByAggregateInput = {
+    id?: SortOrder
+    soundId?: SortOrder
+    totalSecondsListened?: SortOrder
+    totalPlays?: SortOrder
+    averageSecondsListened?: SortOrder
+    timesAdded?: SortOrder
+    timesRemoved?: SortOrder
+  }
+
+  export type GlobalSoundDataSumOrderByAggregateInput = {
+    id?: SortOrder
+    soundId?: SortOrder
+    totalSecondsListened?: SortOrder
+    totalPlays?: SortOrder
+    averageSecondsListened?: SortOrder
+    timesAdded?: SortOrder
+    timesRemoved?: SortOrder
   }
 
   export type AmbienceCreateNestedManyWithoutAuthorInput = {

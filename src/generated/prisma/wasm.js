@@ -139,6 +139,16 @@ exports.Prisma.SoundScalarFieldEnum = {
   volume: 'volume'
 };
 
+exports.Prisma.GlobalSoundDataScalarFieldEnum = {
+  id: 'id',
+  soundId: 'soundId',
+  totalSecondsListened: 'totalSecondsListened',
+  totalPlays: 'totalPlays',
+  averageSecondsListened: 'averageSecondsListened',
+  timesAdded: 'timesAdded',
+  timesRemoved: 'timesRemoved'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -158,7 +168,8 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   User: 'User',
   Ambience: 'Ambience',
-  Sound: 'Sound'
+  Sound: 'Sound',
+  GlobalSoundData: 'GlobalSoundData'
 };
 
 /**

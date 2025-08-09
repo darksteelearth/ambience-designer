@@ -9,24 +9,34 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id        Int        @id @default(autoincrement())
+  email     String     @unique
+  name      String?
   ambiences Ambience[]
 }
 
 model Ambience {
-  id        Int             @id @default(autoincrement())
-  title     String
-  authorId  Int
-  author    User            @relation(fields: [authorId], references: [id])
-  config    Sound[]         
+  id       Int     @id @default(autoincrement())
+  title    String
+  authorId Int
+  author   User    @relation(fields: [authorId], references: [id])
+  config   Sound[]
 }
 
 model Sound {
-  id        Int             @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   soundId    Int
   ambienceId Int
-  ambience   Ambience       @relation(fields: [ambienceId], references: [id])
+  ambience   Ambience @relation(fields: [ambienceId], references: [id])
   volume     Float
+}
+
+model GlobalSoundData {
+  id                     Int @id @default(autoincrement())
+  soundId                Int @unique
+  totalSecondsListened   Int
+  totalPlays             Int
+  averageSecondsListened Int
+  timesAdded             Int
+  timesRemoved           Int
 }

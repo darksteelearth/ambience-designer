@@ -30,3 +30,13 @@ model Sound {
   ambience   Ambience @relation(fields: [ambienceId], references: [id])
   volume     Float
 }
+
+model GlobalSoundData {
+  id                     Int @id @default(autoincrement())
+  soundId                Int @unique
+  totalSecondsListened   Int
+  totalPlays             Int
+  averageSecondsListened Int
+  timesAdded             Int
+  timesRemoved           Int
+}

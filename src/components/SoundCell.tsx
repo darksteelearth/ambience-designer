@@ -7,7 +7,8 @@ import { Slider } from "./ui/slider"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 import { useAmbienceStore } from "@/stores/ambienceStore"
-import React, { useState } from "react"
+import { useSoundUsageStore } from "@/stores/soundUsageStore"
+import React, { useEffect, useState } from "react"
 import ReactHowler from "react-howler"
 
 const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: string, src: string, volume: number, icon: LucideIcon }, scalePitches?: number[] }) => {
@@ -16,9 +17,11 @@ const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: st
   const [showVolumePercentage, setShowVolumePercentage] = useState(false);
   const [playing, setPlaying] = useState(true);
   const [looping, setLooping] = useState(false);
+  const { incrementSecondsListened, setRemoved } = useSoundUsageStore();
 
   const handleRemove = () => {
     removeSound(sound.cellId);
+    setRemoved(sound.cellId);
   };
 
   const randomPitch = () => {
@@ -34,6 +37,16 @@ const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: st
     if (!scalePitches || scalePitches.length === 0) return;
     setModRate(randomPitch());
   }
+
+  useEffect(() => {
+    const secondsInterval = setInterval(() => {
+      incrementSecondsListened(sound.cellId);
+    }, 1000);
+  
+    return () => {
+      clearInterval(secondsInterval);
+    };
+  }, []);
 
   return (
     <div>
