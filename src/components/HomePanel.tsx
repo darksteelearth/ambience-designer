@@ -1,20 +1,24 @@
 'use client'
 
-import { Bubbles, Droplet, Leaf, Waves, Wind, Music, AudioWaveform, LucideIcon } from "lucide-react";
+import { Bubbles, Droplet, Leaf, Waves, Wind, Music, AudioWaveform, LucideIcon, Loader2 } from "lucide-react";
 import { Button } from "./ui/button"
 import { useRouter } from "next/navigation";
 import { useAmbienceStore } from "@/stores/ambienceStore";
-import React from "react";
+import React, { useState } from "react";
 
 const HomePanel = () => {
   const router = useRouter();
   const { updateConfig } = useAmbienceStore();
+  const [loadingSelectPanel, setLoadingSelectPanel] = useState(false);
+  const [loadingMainPanel, setLoadingMainPanel] = useState(false);
 
   const handleBrowseAmbiences = () => {
+    setLoadingSelectPanel(true);
     router.push('/select');
   }
 
   const handleCreateNewAmbience = () => {
+    setLoadingMainPanel(true);
     updateConfig([]);
     router.push('/ambience');
   }
@@ -35,24 +39,28 @@ const HomePanel = () => {
         <h1 className="text-center text-5xl font-bold line-clamp-2 w-100 sm:w-full p-2">Ambience Designer</h1>
         <p className="text-center sm:text-2xl text-xl w-90 sm:w-full text-gray-500 p-2">Combine sounds to create your own sound world.</p>
       </header>
-        <div className="flex w-100 md:w-170 lg:w-200 overflow-hidden min-h-35 p-10">
-          <div className="flex grid grid-flow-col justify-center items-center gap-15 pr-15 infinite-scroll">
-            {headerCellIcons.map((icon, key) => (
-              <HeaderCell key={key} icon={icon} />
-            ))}
-          </div>
-          <div className="flex grid grid-flow-col justify-center items-center gap-15 pr-15 infinite-scroll">
-            {headerCellIcons.map((icon, key) => (
-              <HeaderCell key={key} icon={icon} />
-            ))}
-          </div>
+      <div className="flex w-100 md:w-170 lg:w-200 overflow-hidden min-h-35 p-10">
+        <div className="flex grid grid-flow-col justify-center items-center gap-15 pr-15 infinite-scroll">
+          {headerCellIcons.map((icon, key) => (
+            <HeaderCell key={key} icon={icon} />
+          ))}
         </div>
+        <div className="flex grid grid-flow-col justify-center items-center gap-15 pr-15 infinite-scroll">
+          {headerCellIcons.map((icon, key) => (
+            <HeaderCell key={key} icon={icon} />
+          ))}
+        </div>
+      </div>
       <div className="flex grid gap-4 p-2 pb-8">
         <div className="flex justify-center items-center">
-          <Button variant="outline" onClick={handleBrowseAmbiences} className="text-md w-fit h-fit">Browse Ambiences</Button>
+          <Button variant="outline" onClick={handleBrowseAmbiences} className="text-md w-fit h-fit">
+            {loadingSelectPanel ? <Loader2 className="size-4 m-1 animate-spin" /> : "Browse Ambiences"}
+          </Button>
         </div>
         <div className="flex justify-center items-center">
-          <Button variant="outline" onClick={handleCreateNewAmbience} className="text-md w-fit h-fit">Create a New Ambience</Button>
+          <Button variant="outline" onClick={handleCreateNewAmbience} className="text-md w-fit h-fit">
+            {loadingMainPanel ? <Loader2 className="size-4 m-1 animate-spin" /> : "Create a New Ambience"}
+          </Button>
         </div>
       </div>
     </div>
