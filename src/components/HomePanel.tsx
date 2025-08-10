@@ -34,7 +34,7 @@ const HomePanel = () => {
   }
 
   return (
-    <div className="flex flex-col h-[calc(100vh-50px)] justify-center-safe items-center p-5">
+    <div className="flex flex-col mt-auto justify-center-safe items-center p-5">
       <header className="flex flex-col justify-center items-center">
         <h1 className="text-center text-5xl font-bold line-clamp-2 w-100 sm:w-full p-2">Ambience Designer</h1>
         <p className="text-center sm:text-2xl text-xl w-90 sm:w-full text-gray-500 p-2">Combine sounds to create your own sound world.</p>

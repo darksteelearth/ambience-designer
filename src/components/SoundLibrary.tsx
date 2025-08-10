@@ -4,14 +4,14 @@ import { Search } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs'
 import LibraryPanel from './LibraryPanel'
 import ScrollAreaWithArrows from './ScrollAreaWithArrows'
-import { background_noises, colored_noises, environments, nature_sounds, other_sounds, sound_metadata, tonal_sounds } from '@/data/sound-metadata'
+import { background_noises, colored_noises, environments, nature_sounds, sound_metadata, tonal_sounds } from '@/data/sound-metadata'
 
 const SoundLibrary = () => {
   return (
     <div>
-      <div className="flex pl-8 pr-8 justify-center">
+      <div className="flex justify-center">
         <Tabs defaultValue="search" className="flex w-full">
-          <ScrollAreaWithArrows tabslayout="true" showscrollbar="false" orientation="horizontal" className="w-full self-center mb-2 max-w-3xl">
+          <ScrollAreaWithArrows tabslayout="true" showscrollbar="false" orientation="horizontal" className="w-full self-center mb-2">
             <TabsList className="bg-transparent">
               <TabsTrigger value="search" title="search-tab">
                 <Search />

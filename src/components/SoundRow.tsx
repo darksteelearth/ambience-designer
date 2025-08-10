@@ -11,8 +11,8 @@ const SoundRow = () => {
   const config = useAmbienceStore((state) => state.config);
 
   return (
-    <div className="flex justify-center-safe pl-8 pr-8 pb-10">
-      <ScrollAreaWithArrows showscrollbar="true" orientation="horizontal" className="flex rounded-md border-t border-b w-full max-w-4xl">
+    <div className="flex justify-center-safe pb-10">
+      <ScrollAreaWithArrows showscrollbar="true" orientation="horizontal" className="flex rounded-md border-t border-b w-full">
         <div className="flex justify-center items-center grid grid-rows-[160px] gap-15 grid-flow-col p-6">
           {config.length === 0 && (
             <div className="text-gray-500 text-sm text-center">Browse the Sound Library to add sounds to the ambience.</div>

@@ -66,8 +66,8 @@ const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: st
           <div className="relative w-20 h-20">
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button onClick={handleRemove} variant="outline" size="sm" className="absolute -top-2 -right-2 w-5 h-5.5 rounded-xl z-10 border-red-200 hover:bg-red-100" title="return-sound-to-library">
-                  <ArrowDown className="stroke-red-500 size-3" />
+                <Button onClick={handleRemove} variant="outline" size="sm" className="absolute -top-2 -right-2 w-6 h-6 rounded-xl z-10 border-red-200 hover:bg-red-100/50" title="return-sound-to-library">
+                  <ArrowDown className="stroke-red-400 size-3.5" />
                 </Button>
               </TooltipTrigger>
               <TooltipContent>

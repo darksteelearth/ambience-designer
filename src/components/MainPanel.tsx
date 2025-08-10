@@ -74,9 +74,9 @@ const MainPanel = () => {
   }
 
   return (
-    <div>
-      <div className="flex p-3 pl-8 pr-8 justify-center">
-        <div className="flex w-full max-w-4xl justify-between">
+    <div className="lg:pl-50 lg:pr-50 pl-10 pr-10">
+      <div className="flex pt-3 pb-3 justify-center">
+        <div className="flex w-full justify-between">
           <h1 className="flex text-lg sm:text-xl font-medium items-center translate-y-0.5">Ambience Designer</h1>
           <div className="flex gap-3">
             <Popover>
@@ -115,8 +115,8 @@ const MainPanel = () => {
       </div>
       <SoundRow />
       <SoundLibrary />
-      <div className="pt-3 pl-8 pr-8 pb-8 flex justify-center">
-        <div className="flex w-full max-w-4xl justify-end">
+      <div className="pt-3 pb-8 flex justify-center">
+        <div className="flex w-full justify-end">
           {status === "unauthenticated" &&
             <p className="text-xs flex items-center text-center pr-4 text-gray-500">
               Sign in to save your ambience.

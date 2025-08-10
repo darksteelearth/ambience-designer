@@ -56,7 +56,7 @@ const AmbienceCell = ({ ambience, createCell, userAmbience }: { ambience: Ambien
             <p className="w-24 text-center text-pretty line-clamp-4 text-ellipsis">{ambience.title}</p>
           </div>
           <Button
-            className="w-27 h-9 text-xs rounded-sm m-3 mb-4 shadow-xs text-black bg-sky-50 border border-sky-200 hover:bg-sky-200/70"
+            className="w-27 h-fit text-xs rounded-sm m-3 mb-3 shadow-xs text-black bg-sky-50 border border-sky-200 hover:bg-sky-200/70"
             onClick={handleOpen}>
             {loading ? <Loader2 className="size-3 animate-spin" /> : "Open Ambience"}
           </Button>
