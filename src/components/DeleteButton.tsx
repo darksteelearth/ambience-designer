@@ -45,9 +45,9 @@ const DeleteButton = () => {
                         Are you sure you wish to delete the following ambience(s)?
                     </DialogDescription>
                 </DialogHeader>
-                <div className="mt-5 mb-5 text-center">
+                <div className="mt-5 mb-5 text-center overflow-hidden">
                     {selected.map((ambience) => (
-                        <p key={ambience}>{ambience}</p>
+                        <p key={ambience} className="line-clamp-1 text-ellipsis">{ambience}</p>
                     ))}
                 </div>
 

@@ -87,10 +87,10 @@ const SaveButton = () => {
                 <DialogContent className="max-h-screen overflow-auto">
                     <DialogHeader>
                         <DialogTitle>Ambience Exists</DialogTitle>
-                        <DialogDescription>
-                            An ambience named "{name}" exists. Do you wish to replace this ambience?
-                        </DialogDescription>
                     </DialogHeader>
+                    <div className="text-sm overflow-hidden">
+                        <p className="line-clamp-5 text-neutral-500 text-ellipsis">An ambience named "{name}" exists. Do you wish to replace this ambience?</p>
+                    </div>
                     <DialogFooter>
                         <DialogClose asChild>
                             <Button variant="outline" disabled={loading}>Cancel</Button>
