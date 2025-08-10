@@ -1,17 +1,23 @@
 'use client'
 
 import { Button } from './ui/button'
-import { LucideIcon, Plus } from 'lucide-react'
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip'
 import { useAmbienceStore } from '@/stores/ambienceStore'
 import { useSoundUsageStore } from '@/stores/soundUsageStore'
-import React from 'react'
+import { LucideIcon, Plus } from 'lucide-react'
+import React, { useState } from 'react'
+import GenericDialog from './GenericDialog'
 
 const LibraryCell = ({ soundId, title, icon }: { soundId: number, title: string, icon: LucideIcon }) => {
-    const addSound = useAmbienceStore((state) => state.addSound);
+    const { addSound, config } = useAmbienceStore();
     const addSoundUsage = useSoundUsageStore((state) => state.addSoundUsage);
+    const [tooManySoundsDialogOpen, setTooManySoundsDialogOpen] = useState(false);
 
     const handleAdd = () => {
+        if (config.length >= 50) {
+            setTooManySoundsDialogOpen(true);
+            return;
+        }
         const cellId = Date.now();
         addSound(cellId, soundId);
         addSoundUsage(cellId, soundId, 1);
@@ -37,6 +43,12 @@ const LibraryCell = ({ soundId, title, icon }: { soundId: number, title: string,
                 </div>
             </div>
             <p className="w-24 text-center text-pretty text-xs pt-1 line-clamp-2 text-ellipsis">{title}</p>
+            <GenericDialog 
+                open={tooManySoundsDialogOpen} 
+                setOpen={setTooManySoundsDialogOpen}
+                title="Too Many Sounds"
+                message="You have too many sounds added. Please remove some sounds before adding new ones." 
+            />
         </div>
     )
 }

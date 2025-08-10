@@ -40,8 +40,8 @@ const AmbienceCell = ({ ambience, createCell, userAmbience }: { ambience: Ambien
       ) : (
         <>
           {userAmbience && <Checkbox checked={isSelected()} onCheckedChange={handleSelect} className="relative top-2 left-1/2 -translate-x-4" title="select-checkbox" />}
-          <div className="flex-grow flex items-center justify-center text-xs font-medium select-none">
-            <p className="w-24 text-center text-pretty line-clamp-2 text-ellipsis">{ambience.title}</p>
+          <div className="flex-grow flex items-center justify-center text-xs mt-3 font-medium select-none">
+            <p className="w-24 text-center text-pretty line-clamp-4 text-ellipsis">{ambience.title}</p>
           </div>
           <Button
             className="w-27 h-7 text-xs rounded-sm m-3 mb-3 shadow-xs text-black bg-sky-50 border border-sky-200 hover:bg-sky-200/70"

@@ -5,6 +5,10 @@ export async function POST(req: Request) {
     try {
         const data: Record<number, { t: number, p: number, a: number, r: number }> = JSON.parse(await req.text());
 
+        if (req.headers.get('origin') !== "https://ambience-designer.vercel.app" && 
+            req.headers.get('origin') !== "http://ambience-designer.vercel.app") 
+            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+
         const soundDataToUpdate = await prisma.globalSoundData.findMany({
             where: {
                 soundId: {

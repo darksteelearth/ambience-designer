@@ -38,7 +38,7 @@ const SaveAmbienceForm = ({ handleSubmit, waiting, saveLabel }: { handleSubmit: 
                         <FormItem>
                             <FormLabel>Title</FormLabel>
                             <FormControl>
-                                <Input {...field} placeholder="Enter a name..." />
+                                <Input {...field} maxLength={100} placeholder="Enter a name..." />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

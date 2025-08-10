@@ -12,18 +12,22 @@ import { useEffect, useState } from "react"
 import { useInputStore } from "@/stores/selectPanelSearchInput"
 import { useSelectedStore } from "@/stores/selectedAmbiences"
 import { filterItems } from "@/actions/filterItems"
+import { useSavedAmbiencesStore } from "@/stores/savedAmbiencesStore"
 import { useSession } from "next-auth/react"
 
-const AmbiencesPanel = ({ listTitle, ambiences, defaultAmbiences }: { listTitle?: string, ambiences: Ambience[] | null, defaultAmbiences: boolean }) => {
-
+const AmbiencesPanel = ({ listTitle, ambiences, defaultAmbiences }: { listTitle?: string, ambiences: Ambience[], defaultAmbiences: boolean }) => {
     const [displayedAmbiences, setDisplayedAmbiences] = useState(ambiences);
     const { input, updateInput } = useInputStore();
     const selected = useSelectedStore(state => state.selected);
+    const loading = useSavedAmbiencesStore(state => state.loading);
     const { data: session, status } = useSession();
 
     useEffect(() => {
-        if (!ambiences) return;
-        if (!defaultAmbiences) { if (!displayedAmbiences) setDisplayedAmbiences(ambiences); return };
+        if (!defaultAmbiences) { 
+            setDisplayedAmbiences(ambiences); 
+            return 
+        };
+
         const filteredAmbiences = filterItems(ambiences, input);
         setDisplayedAmbiences(filteredAmbiences);
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -42,28 +46,27 @@ const AmbiencesPanel = ({ listTitle, ambiences, defaultAmbiences }: { listTitle?
                         <>
                             <Label htmlFor="search" className="mb-2">Search</Label>
                             <div className="relative mb-3">
-                                <Input id="search" className="bg-white mb-5 pl-8 text-sm" onChange={(e) => updateInput(e.target.value)} value={input} placeholder="Enter an ambience..." />
+                                <Input id="search" className="bg-white mb-5 pl-8 text-sm" onChange={(e) => updateInput(e.target.value)} value={input} maxLength={100} placeholder="Enter an ambience..." />
                                 <Search className="w-5 h-4 absolute top-1/2 left-2 transform -translate-y-1/2 text-gray-400/80 hover:text-gray-400/100" />
                             </div>
                         </>
                     )}
                     <div className="grid grid-cols-[134px_134px] lg:grid-cols-[134px_134px_134px] gap-5">
                         {!defaultAmbiences && <AmbienceCell key={Date.now()} ambience={{ title: "Create a New Ambience", config: [] }} createCell />}
-                        {displayedAmbiences ? (
-                            <>
-                                {(defaultAmbiences && displayedAmbiences.length === 0) && <p className="absolute w-full -translate-x-5 p-5 text-gray-500 text-center text-sm">No items matched your search.</p>}
-                                {displayedAmbiences.map((ambience) => (
-                                    <AmbienceCell key={ambience["title"]} ambience={{ title: ambience["title"], config: ambience["config"] }} createCell={false} userAmbience={!defaultAmbiences} />
-                                ))}
-                            </>
-                        ) : status === "authenticated" && <LoadingSpinner />}
+                        {(defaultAmbiences && displayedAmbiences.length === 0) && <p className="absolute w-full -translate-x-5 p-5 text-gray-500 text-center text-sm">No items matched your search.</p>}
+                        {!(!defaultAmbiences && loading && status === "authenticated") ? (
+                            displayedAmbiences.map((ambience) => (
+                                <AmbienceCell key={ambience["title"]} ambience={{ title: ambience["title"], config: ambience["config"] }} createCell={false} userAmbience={!defaultAmbiences} />
+                            ))
+                        ) : <LoadingSpinner />}
                     </div>
                 </div>
             </ScrollAreaWithArrows>
             {!defaultAmbiences &&
                 <div className={`flex justify-center mt-3 ${selected.length <= 0 && "hidden"}`}>
-                    <DeleteButton displayedAmbiences={displayedAmbiences} setDisplayedAmbiences={setDisplayedAmbiences} />
-                </div>}
+                    <DeleteButton />
+                </div>
+            }
         </div>
     )
 }

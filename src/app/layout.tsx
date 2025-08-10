@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Nunito_Sans } from "next/font/google";
 import { NavigationGuardProvider } from "next-navigation-guard";
 import AuthSessionProvider from "@/components/AuthSessionProvider";
+import SavedAmbiences from "@/components/SavedAmbiences";
 import "./globals.css";
 
 const nunitoSans = Nunito_Sans({
@@ -22,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthSessionProvider>
+        <SavedAmbiences />
         <body className={`${nunitoSans.className} antialiased`}>
           <NavigationGuardProvider>
             <div className="fixed inset-0 -z-20 bg-radial from-sky-50/50 to-gray-50" />

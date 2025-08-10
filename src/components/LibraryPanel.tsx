@@ -24,7 +24,7 @@ const LibraryPanel = ({ sounds, search }: { sounds: { id: number, title: string,
           <div className="flex w-full max-w-3xl gap-4">
             <Label htmlFor="search">Search</Label>
             <div className="relative w-full">
-              <Input id="search" className="bg-white pl-8 h-fit text-xs" onChange={(e) => handleOnChange(e.target.value)} placeholder="Search for sounds..." />
+              <Input id="search" className="bg-white pl-8 h-fit text-xs" onChange={(e) => handleOnChange(e.target.value)} maxLength={200} placeholder="Search for sounds..." />
               <Search className="w-5 h-4 absolute top-1/2 left-2 transform -translate-y-1/2 text-gray-400/80 hover:text-gray-400/100" />
             </div>
           </div>

@@ -17,8 +17,6 @@ export async function saveAmbience(title: string, config: Config) {
 
     if (!user) return
 
-    console.log(user)
-
     const ambience = await prisma.ambience.create({
         data: {
             authorId: user.id,

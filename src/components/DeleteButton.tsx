@@ -1,18 +1,19 @@
 'use client'
 
-import { Dispatch, SetStateAction, useState } from "react";
 import { Button } from "./ui/button"
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog"
 import { useSelectedStore } from "@/stores/selectedAmbiences";
 import { deleteAmbiences } from "@/actions/deleteAmbiences";
 import { Loader2 } from "lucide-react";
-import { Ambience } from "@/data/config";
+import { useSavedAmbiencesStore } from "@/stores/savedAmbiencesStore";
+import { useState } from "react";
 
-const DeleteButton = ({ displayedAmbiences, setDisplayedAmbiences }: { displayedAmbiences: Ambience[] | null, setDisplayedAmbiences: Dispatch<SetStateAction<Ambience[] | null>>}) => {
+const DeleteButton = () => {
     const [waiting, setWaiting] = useState(false);
     const [deleteLabel, setDeleteLabel] = useState(<>Delete</>);
     const [dialogOpen, setDialogOpen] = useState(false);
     const { selected, setSelected } = useSelectedStore();
+    const deleteLocalAmbiences = useSavedAmbiencesStore(state => state.deleteLocalAmbiences);
 
     const handleDelete = async () => {
         setWaiting(true);
@@ -20,7 +21,7 @@ const DeleteButton = ({ displayedAmbiences, setDisplayedAmbiences }: { displayed
 
         try {
             await deleteAmbiences(selected);
-            setDisplayedAmbiences((displayedAmbiences || []).filter(ambience => !selected.includes(ambience.title)));
+            deleteLocalAmbiences(selected)
             setSelected([]);
             setDialogOpen(false);
             setDeleteLabel(<>Delete</>);

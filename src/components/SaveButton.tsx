@@ -5,11 +5,11 @@ import { Button } from './ui/button'
 import { useState } from 'react'
 import { Loader2 } from 'lucide-react';
 import { useAmbienceStore } from '@/stores/ambienceStore';
-import { checkIfAmbienceExists } from '@/actions/checkIfAmbienceExists';
 import { saveAmbience } from '@/actions/saveAmbience';
 import { updateAmbience } from '@/actions/updateAmbience';
 import SaveAmbienceForm from './SaveAmbienceForm';
 import { useSession } from 'next-auth/react';
+import { useSavedAmbiencesStore } from '@/stores/savedAmbiencesStore';
 
 const SaveButton = () => {
     const [saveDialogOpen, setSaveDialogOpen] = useState(false);
@@ -20,6 +20,7 @@ const SaveButton = () => {
     const [loading, setLoading] = useState(false);
     const { config, updateConfig } = useAmbienceStore();
     const { data: session, status } = useSession();
+    const { savedAmbiences, addLocalAmbience, updateLocalAmbience } = useSavedAmbiencesStore();
 
     const handleSubmit = async (name: string) => {
         setName(name)
@@ -27,7 +28,7 @@ const SaveButton = () => {
         setSaveLabel(<Loader2 className="animate-spin" />)
 
         try {
-            const ambienceExists = await checkIfAmbienceExists(name);
+            const ambienceExists = !!savedAmbiences.find(ambience => ambience.title === name)
 
             if (ambienceExists) {
                 setLoading(false)
@@ -36,6 +37,7 @@ const SaveButton = () => {
             } else {
                 await saveAmbience(name, config);
                 updateConfig(config);
+                addLocalAmbience({title: name, config})
                 setSaveDialogOpen(false);
                 setSaveLabel(<>Save</>);
                 setLoading(false);
@@ -52,6 +54,7 @@ const SaveButton = () => {
         try {
             await updateAmbience(name, config);
             updateConfig(config)
+            updateLocalAmbience(name, { title: name, config });
             setSaveDialogOpen(false);
             setReplaceDialogOpen(false);
             setReplaceLabel(<>Replace</>)
@@ -65,7 +68,7 @@ const SaveButton = () => {
         <>
             <Dialog open={saveDialogOpen} onOpenChange={setSaveDialogOpen}>
                 <DialogTrigger asChild>
-                    <Button variant="outline" disabled={config.length <= 0 || status === "unauthenticated"} className="text-sm">
+                    <Button variant="outline" disabled={config.length <= 0 || status === "unauthenticated" || savedAmbiences.length >= 100} className="text-sm">
                         Save Ambience...
                     </Button>
                 </DialogTrigger>

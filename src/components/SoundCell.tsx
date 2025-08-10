@@ -46,6 +46,7 @@ const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: st
     return () => {
       clearInterval(secondsInterval);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

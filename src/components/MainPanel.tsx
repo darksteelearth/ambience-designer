@@ -15,6 +15,7 @@ import { useSelectedStore } from '@/stores/selectedAmbiences';
 import { useInputStore } from '@/stores/selectPanelSearchInput';
 import { useSession } from 'next-auth/react';
 import { useSoundUsageStore } from '@/stores/soundUsageStore';
+import { useSavedAmbiencesStore } from '@/stores/savedAmbiencesStore';
 import { useEffect, useState } from 'react';
 import { equalAmbiences } from '@/actions/equalAmbiences';
 
@@ -25,6 +26,7 @@ const MainPanel = () => {
   const setSelected = useSelectedStore(state => state.setSelected);
   const updateInput = useInputStore(state => state.updateInput);
   const { data: session, status } = useSession();
+  const savedAmbiences = useSavedAmbiencesStore(state => state.savedAmbiences);
   const navGuard = useNavigationGuard({
     enabled: !equalAmbiences(config, originalConfig) && config.length > 0,
     confirm: () => window.confirm("You have unsaved changes. Are you sure you wish to leave this page?")
@@ -118,6 +120,11 @@ const MainPanel = () => {
           {status === "unauthenticated" &&
             <p className="text-xs flex items-center text-center pr-4 text-gray-500">
               Sign in to save your ambience.
+            </p>
+          }
+          {savedAmbiences.length >= 100 &&
+            <p className="text-xs flex items-center text-center pr-4 text-red-500">
+              You have reached your limit of saved ambiences. Please delete an ambience to save a new one.
             </p>
           }
           <SaveButton />
