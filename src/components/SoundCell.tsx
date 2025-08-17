@@ -10,6 +10,7 @@ import { useAmbienceStore } from "@/stores/ambienceStore"
 import { useSoundUsageStore } from "@/stores/soundUsageStore"
 import React, { useEffect, useState } from "react"
 import ReactHowler from "react-howler"
+import { iconStyles } from "@/data/icon-styles"
 
 const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: string, src: string, volume: number, icon: LucideIcon }, scalePitches?: number[] }) => {
   const { globalVolume, updateSoundVolume, removeSound } = useAmbienceStore();
@@ -66,7 +67,7 @@ const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: st
           <div className="relative w-20 h-20">
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button onClick={handleRemove} variant="outline" size="sm" className="absolute -top-2 -right-2 w-6 h-6 rounded-xl z-10 border-red-200 hover:bg-red-100/50" title="return-sound-to-library">
+                <Button onClick={handleRemove} variant="outline" size="sm" className="absolute -top-2 -right-2 w-6 h-6 rounded-xl z-10 border-red-300 hover:bg-red-100" title="return-sound-to-library">
                   <ArrowDown className="stroke-red-400 size-3.5" />
                 </Button>
               </TooltipTrigger>
@@ -74,8 +75,8 @@ const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: st
                 <p>Return Sound to Library</p>
               </TooltipContent>
             </Tooltip>
-            <div className="absolute inset-0 rounded-md bg-sky-100/50 animate-ping [animation-timing-function:ease-in] [animation-duration:3s]"></div>
-            <div className="absolute flex justify-center items-center w-full h-full border border-sky-200/70 shadow-xs rounded-md bg-white">
+            <div className={`absolute inset-0 rounded-md ${iconStyles.get(sound.icon)?.pingColor} animate-ping [animation-timing-function:ease-in] [animation-duration:3s]`}></div>
+            <div className={`absolute flex justify-center items-center w-full h-full border rounded-md bg-white shadow shadow-md ${iconStyles.get(sound.icon)?.cellStyle}`}>
               <sound.icon className="size-5" />
             </div>
             <Tooltip>

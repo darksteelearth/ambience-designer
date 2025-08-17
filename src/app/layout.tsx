@@ -26,7 +26,7 @@ export default function RootLayout({
         <SavedAmbiences />
         <body className={`${nunitoSans.className} antialiased`}>
           <NavigationGuardProvider>
-            <div className="fixed inset-0 -z-20 bg-radial from-sky-50/50 to-gray-50" />
+            <div className="fixed inset-0 -z-20 bg-radial from-white to-slate-50" />
             <main className="mt-13">
               {children}
             </main>

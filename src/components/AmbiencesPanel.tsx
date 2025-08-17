@@ -40,7 +40,7 @@ const AmbiencesPanel = ({ listTitle, ambiences, defaultAmbiences }: { listTitle?
                     <h2 className="text-md leading-none font-medium">{listTitle}</h2>
                 </div>)
             }
-            <ScrollAreaWithArrows showscrollbar="true" orientation="vertical" className="h-[calc(70vh-70px)] border rounded-sm shadow-xs bg-gray-50/50">
+            <ScrollAreaWithArrows showscrollbar="true" orientation="vertical" className="h-[calc(70vh-70px)] border border-slate-300 rounded-sm shadow-xs bg-slate-50">
                 <div className="p-5">
                     {defaultAmbiences && (
                         <>
@@ -53,7 +53,7 @@ const AmbiencesPanel = ({ listTitle, ambiences, defaultAmbiences }: { listTitle?
                     )}
                     <div className="grid grid-cols-[134px_134px] lg:grid-cols-[134px_134px_134px] gap-5">
                         {!defaultAmbiences && <AmbienceCell key={Date.now()} ambience={{ title: "Create a New Ambience", config: [] }} createCell />}
-                        {(defaultAmbiences && displayedAmbiences.length === 0) && <p className="absolute w-full -translate-x-5 p-5 text-gray-500 text-center text-sm">No items matched your search.</p>}
+                        {(defaultAmbiences && displayedAmbiences.length === 0) && <p className="absolute w-full -translate-x-5 p-5 text-slate-500 text-center text-sm">No items matched your search.</p>}
                         {!(!defaultAmbiences && loading && status === "authenticated") ? (
                             displayedAmbiences.map((ambience) => (
                                 <AmbienceCell key={ambience["title"]} ambience={{ title: ambience["title"], config: ambience["config"] }} createCell={false} userAmbience={!defaultAmbiences} />

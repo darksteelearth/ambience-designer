@@ -24,13 +24,13 @@ const LibraryPanel = ({ sounds, search }: { sounds: { id: number, title: string,
           <div className="flex w-full gap-4">
             <Label htmlFor="search">Search</Label>
             <div className="relative w-full">
-              <Input id="search" className="bg-white pl-8 h-fit text-xs" onChange={(e) => handleOnChange(e.target.value)} maxLength={200} placeholder="Search for sounds..." />
+              <Input id="search" className="bg-white pl-8 h-fit text-sm" onChange={(e) => handleOnChange(e.target.value)} maxLength={200} placeholder="Search for sounds..." />
               <Search className="w-5 h-4 absolute top-1/2 left-2 transform -translate-y-1/2 text-gray-400/80 hover:text-gray-400/100" />
             </div>
           </div>
         </div>}
       <div className="flex justify-center-safe">
-        <ScrollAreaWithArrows showscrollbar="true" orientation="horizontal" className="flex rounded-md shadow-xs border border-sky-200/70 w-full">
+        <ScrollAreaWithArrows showscrollbar="true" orientation="horizontal" className="flex rounded-md shadow-xs border border-slate-300 bg-radial from-white to-slate-50 w-full">
           <div className="flex justify-evenly grid grid-rows-[96px_96px] gap-5 grid-flow-col p-6">
             {displayedSounds.length > 0 ?
               <>

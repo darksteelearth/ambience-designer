@@ -5,6 +5,7 @@ import { Button } from "./ui/button"
 import { useRouter } from "next/navigation";
 import { useAmbienceStore } from "@/stores/ambienceStore";
 import React, { useState } from "react";
+import { iconStyles } from "@/data/icon-styles";
 
 const HomePanel = () => {
   const router = useRouter();
@@ -27,7 +28,7 @@ const HomePanel = () => {
 
   const HeaderCell = ({ icon }: { icon: LucideIcon }) => {
     return (
-      <div className="flex justify-center items-center w-15 h-15 border border-sky-200/70 rounded-md bg-white shadow-xs">
+      <div className={`flex justify-center items-center w-15 h-15 border rounded-md bg-white shadow shadow-md ${iconStyles.get(icon)?.cellStyle}`}>
         {React.createElement(icon, { className: "size-5" })}
       </div>
     )
