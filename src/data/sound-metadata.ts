@@ -25,7 +25,7 @@ export const sound_metadata = [
     { id: 19, title: "Sounds by the Sea 1", src: "sounds_by_the_sea_1.mp3", tags: [SoundCategory.NATURE, SoundCategory.ENVIRONMENT], icon: Waves },
     { id: 20, title: "Sounds by the Sea 2", src: "sounds_by_the_sea_2.mp3", tags: [SoundCategory.NATURE, SoundCategory.ENVIRONMENT], icon: Waves },
     { id: 21, title: "Submarine Cockpit", src: "submarine_cockpit.mp3", tags: [SoundCategory.ENVIRONMENT], icon: Bubbles },
-    { id: 22, title: "Thunder", src: "thunder_fade_in_fade_out.mp3", tags: [SoundCategory.NATURE], icon: Leaf },
+    { id: 22, title: "Thunder", src: "thunder.mp3", tags: [SoundCategory.NATURE], icon: Leaf },
     { id: 23, title: "Turning Pages", src: "turning_pages.mp3", tags: [SoundCategory.BACKGROUND_NOISE] },
     { id: 24, title: "Typing Sounds", src: "typing_sounds.mp3", tags: [SoundCategory.BACKGROUND_NOISE] },
     { id: 25, title: "Underground Wind", src: "underground_wind.mp3", tags: [SoundCategory.BACKGROUND_NOISE], icon: Wind },
@@ -49,6 +49,8 @@ export const sound_metadata = [
     { id: 43, title: "Synth Bells", src: "bell_3_C.wav", tags: [SoundCategory.TONAL], icon: Music, scalePitches: minorSeventh2Oct },
     { id: 44, title: "Mellow Drone", src: "drone_4_C.wav", tags: [SoundCategory.TONAL], icon: Music, scalePitches: minorSeventh },
     { id: 45, title: "Resonant Sweeping Drone", src: "resonant_sweeping_drone_C.wav", tags: [SoundCategory.TONAL], icon: Music, scalePitches: minorSeventh2Oct },
+    { id: 46, title: "Layered Synth Tones", src: "layered_synth_tones.wav", tags: [SoundCategory.TONAL], icon: Music, scalePitches: minorSeventh2Oct },
+    { id: 47, title: "Layered Synth Tones 2", src: "layered_synth_tones_2.wav", tags: [SoundCategory.TONAL], icon: Music, scalePitches: minorSeventh2Oct },
 ]
 
 export const nature_sounds = sound_metadata.filter(sound => sound.tags.includes(SoundCategory.NATURE))
