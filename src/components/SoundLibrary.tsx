@@ -4,7 +4,7 @@ import { Search } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs'
 import LibraryPanel from './LibraryPanel'
 import ScrollAreaWithArrows from './ScrollAreaWithArrows'
-import { background_noises, colored_noises, environments, nature_sounds, sound_metadata, tonal_sounds } from '@/data/sound-metadata'
+import { background_noises, colored_noises, environments, nature_sounds, sound_metadata, tonal_sounds, water_sounds } from '@/data/sound-metadata'
 
 const SoundLibrary = () => {
   return (
@@ -16,6 +16,7 @@ const SoundLibrary = () => {
               <TabsTrigger value="search" title="search-tab">
                 <Search />
               </TabsTrigger>
+              <TabsTrigger value="water_sounds">Water Sounds</TabsTrigger>
               <TabsTrigger value="nature_sounds">Nature Sounds</TabsTrigger>
               <TabsTrigger value="background_noises">Background Noises</TabsTrigger>
               <TabsTrigger value="environments">Environments</TabsTrigger>
@@ -25,6 +26,9 @@ const SoundLibrary = () => {
           </ScrollAreaWithArrows>
           <TabsContent value="search">
             <LibraryPanel sounds={sound_metadata} search />
+          </TabsContent>
+          <TabsContent value="water_sounds">
+            <LibraryPanel sounds={water_sounds} />
           </TabsContent>
           <TabsContent value="nature_sounds">
             <LibraryPanel sounds={nature_sounds} />
