@@ -12,6 +12,7 @@ const HomePanel = () => {
   const { updateConfig } = useAmbienceStore();
   const [loadingSelectPanel, setLoadingSelectPanel] = useState(false);
   const [loadingMainPanel, setLoadingMainPanel] = useState(false);
+  const [loadingSoundChallenge, setLoadingSoundChallenge] = useState(false);
 
   const handleBrowseAmbiences = () => {
     setLoadingSelectPanel(true);
@@ -22,6 +23,12 @@ const HomePanel = () => {
     setLoadingMainPanel(true);
     updateConfig([]);
     router.push('/ambience');
+  }
+
+  const handleSoundChallenge = () => {
+    setLoadingSoundChallenge(true);
+    updateConfig([]);
+    router.push('/recreate');
   }
 
   const headerCellIcons = [Leaf, Wind, Droplet, Waves, Bubbles, Music, AudioWaveform];
@@ -61,6 +68,11 @@ const HomePanel = () => {
         <div className="flex justify-center items-center">
           <Button variant="outline" onClick={handleCreateNewAmbience} className="text-md w-fit h-fit">
             {loadingMainPanel ? <Loader2 className="size-4 m-1 animate-spin" /> : "Create a New Ambience"}
+          </Button>
+        </div>
+        <div className="flex justify-center items-center">
+          <Button variant="outline" onClick={handleSoundChallenge} className="text-md w-fit h-fit">
+            {loadingSoundChallenge ? <Loader2 className="size-4 m-1 animate-spin" /> : "Sound Challenge"}
           </Button>
         </div>
       </div>

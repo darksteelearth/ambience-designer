@@ -13,7 +13,7 @@ import ReactHowler from "react-howler"
 import { iconStyles } from "@/data/icon-styles"
 
 const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: string, src: string, volume: number, icon: LucideIcon }, scalePitches?: number[] }) => {
-  const { globalVolume, updateSoundVolume, removeSound } = useAmbienceStore();
+  const { globalVolume, updateSoundVolume, removeSound, ambiencePlaying } = useAmbienceStore();
   const [currentVolume, setCurrentVolume] = useState(sound.volume)
   const [showVolumePercentage, setShowVolumePercentage] = useState(false);
   const [playing, setPlaying] = useState(true);
@@ -22,7 +22,9 @@ const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: st
 
   const handleRemove = () => {
     removeSound(sound.cellId);
-    setRemoved(sound.cellId);
+    if (window.location.pathname === "/ambience") {
+      setRemoved(sound.cellId);
+    }
   };
 
   const randomPitch = () => {
@@ -40,13 +42,15 @@ const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: st
   }
 
   useEffect(() => {
-    const secondsInterval = setInterval(() => {
-      incrementSecondsListened(sound.cellId);
-    }, 1000);
+    if (window.location.pathname === "/ambience") {
+      const secondsInterval = setInterval(() => {
+        incrementSecondsListened(sound.cellId);
+      }, 1000);
   
-    return () => {
-      clearInterval(secondsInterval);
-    };
+      return () => {
+        clearInterval(secondsInterval);
+      };
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -55,7 +59,7 @@ const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: st
       <ReactHowler 
         key={scalePitches ? modRate : undefined}
         src={sound.src} 
-        playing={playing} 
+        playing={playing && ambiencePlaying} 
         loop={scalePitches ? looping : true} 
         volume={currentVolume * globalVolume}
         rate={scalePitches ? modRate : 1}

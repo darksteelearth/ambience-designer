@@ -1217,56 +1217,66 @@ export namespace Prisma {
 
   export type UserAvgAggregateOutputType = {
     id: number | null
+    xp: number | null
   }
 
   export type UserSumAggregateOutputType = {
     id: number | null
+    xp: number | null
   }
 
   export type UserMinAggregateOutputType = {
     id: number | null
     email: string | null
     name: string | null
+    xp: number | null
   }
 
   export type UserMaxAggregateOutputType = {
     id: number | null
     email: string | null
     name: string | null
+    xp: number | null
   }
 
   export type UserCountAggregateOutputType = {
     id: number
     email: number
     name: number
+    xp: number
     _all: number
   }
 
 
   export type UserAvgAggregateInputType = {
     id?: true
+    xp?: true
   }
 
   export type UserSumAggregateInputType = {
     id?: true
+    xp?: true
   }
 
   export type UserMinAggregateInputType = {
     id?: true
     email?: true
     name?: true
+    xp?: true
   }
 
   export type UserMaxAggregateInputType = {
     id?: true
     email?: true
     name?: true
+    xp?: true
   }
 
   export type UserCountAggregateInputType = {
     id?: true
     email?: true
     name?: true
+    xp?: true
     _all?: true
   }
 
@@ -1360,6 +1370,7 @@ export namespace Prisma {
     id: number
     email: string
     name: string | null
+    xp: number
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1385,6 +1396,7 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     name?: boolean
+    xp?: boolean
     ambiences?: boolean | User$ambiencesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -1393,21 +1405,24 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     name?: boolean
+    xp?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     email?: boolean
     name?: boolean
+    xp?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
     id?: boolean
     email?: boolean
     name?: boolean
+    xp?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "xp", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ambiences?: boolean | User$ambiencesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1424,6 +1439,7 @@ export namespace Prisma {
       id: number
       email: string
       name: string | null
+      xp: number
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1851,6 +1867,7 @@ export namespace Prisma {
     readonly id: FieldRef<"User", 'Int'>
     readonly email: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
+    readonly xp: FieldRef<"User", 'Int'>
   }
     
 
@@ -5568,7 +5585,8 @@ export namespace Prisma {
   export const UserScalarFieldEnum: {
     id: 'id',
     email: 'email',
-    name: 'name'
+    name: 'name',
+    xp: 'xp'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -5687,6 +5705,7 @@ export namespace Prisma {
     id?: IntFilter<"User"> | number
     email?: StringFilter<"User"> | string
     name?: StringNullableFilter<"User"> | string | null
+    xp?: IntFilter<"User"> | number
     ambiences?: AmbienceListRelationFilter
   }
 
@@ -5694,6 +5713,7 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrderInput | SortOrder
+    xp?: SortOrder
     ambiences?: AmbienceOrderByRelationAggregateInput
   }
 
@@ -5704,6 +5724,7 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringNullableFilter<"User"> | string | null
+    xp?: IntFilter<"User"> | number
     ambiences?: AmbienceListRelationFilter
   }, "id" | "email">
 
@@ -5711,6 +5732,7 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrderInput | SortOrder
+    xp?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -5725,6 +5747,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"User"> | number
     email?: StringWithAggregatesFilter<"User"> | string
     name?: StringNullableWithAggregatesFilter<"User"> | string | null
+    xp?: IntWithAggregatesFilter<"User"> | number
   }
 
   export type AmbienceWhereInput = {
@@ -5896,6 +5919,7 @@ export namespace Prisma {
   export type UserCreateInput = {
     email: string
     name?: string | null
+    xp?: number
     ambiences?: AmbienceCreateNestedManyWithoutAuthorInput
   }
 
@@ -5903,12 +5927,14 @@ export namespace Prisma {
     id?: number
     email: string
     name?: string | null
+    xp?: number
     ambiences?: AmbienceUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UserUpdateInput = {
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    xp?: IntFieldUpdateOperationsInput | number
     ambiences?: AmbienceUpdateManyWithoutAuthorNestedInput
   }
 
@@ -5916,6 +5942,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    xp?: IntFieldUpdateOperationsInput | number
     ambiences?: AmbienceUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
@@ -5923,17 +5950,20 @@ export namespace Prisma {
     id?: number
     email: string
     name?: string | null
+    xp?: number
   }
 
   export type UserUpdateManyMutationInput = {
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    xp?: IntFieldUpdateOperationsInput | number
   }
 
   export type UserUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    xp?: IntFieldUpdateOperationsInput | number
   }
 
   export type AmbienceCreateInput = {
@@ -6150,26 +6180,31 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
+    xp?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
     id?: SortOrder
+    xp?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
+    xp?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
+    xp?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
     id?: SortOrder
+    xp?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -6406,6 +6441,14 @@ export namespace Prisma {
     set?: string | null
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type AmbienceUpdateManyWithoutAuthorNestedInput = {
     create?: XOR<AmbienceCreateWithoutAuthorInput, AmbienceUncheckedCreateWithoutAuthorInput> | AmbienceCreateWithoutAuthorInput[] | AmbienceUncheckedCreateWithoutAuthorInput[]
     connectOrCreate?: AmbienceCreateOrConnectWithoutAuthorInput | AmbienceCreateOrConnectWithoutAuthorInput[]
@@ -6418,14 +6461,6 @@ export namespace Prisma {
     update?: AmbienceUpdateWithWhereUniqueWithoutAuthorInput | AmbienceUpdateWithWhereUniqueWithoutAuthorInput[]
     updateMany?: AmbienceUpdateManyWithWhereWithoutAuthorInput | AmbienceUpdateManyWithWhereWithoutAuthorInput[]
     deleteMany?: AmbienceScalarWhereInput | AmbienceScalarWhereInput[]
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type AmbienceUncheckedUpdateManyWithoutAuthorNestedInput = {
@@ -6696,12 +6731,14 @@ export namespace Prisma {
   export type UserCreateWithoutAmbiencesInput = {
     email: string
     name?: string | null
+    xp?: number
   }
 
   export type UserUncheckedCreateWithoutAmbiencesInput = {
     id?: number
     email: string
     name?: string | null
+    xp?: number
   }
 
   export type UserCreateOrConnectWithoutAmbiencesInput = {
@@ -6744,12 +6781,14 @@ export namespace Prisma {
   export type UserUpdateWithoutAmbiencesInput = {
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    xp?: IntFieldUpdateOperationsInput | number
   }
 
   export type UserUncheckedUpdateWithoutAmbiencesInput = {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    xp?: IntFieldUpdateOperationsInput | number
   }
 
   export type SoundUpsertWithWhereUniqueWithoutAmbienceInput = {

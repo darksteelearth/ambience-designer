@@ -19,9 +19,14 @@ const LibraryCell = ({ soundId, title, icon }: { soundId: number, title: string,
             setTooManySoundsDialogOpen(true);
             return;
         }
+
         const cellId = Date.now();
+        
         addSound(cellId, soundId);
-        addSoundUsage(cellId, soundId, 1);
+
+        if (window.location.pathname === "/ambience") {
+            addSoundUsage(cellId, soundId, 1);
+        }
     };
 
     return (
@@ -43,7 +48,7 @@ const LibraryCell = ({ soundId, title, icon }: { soundId: number, title: string,
                     </Tooltip>
                 </div>
             </div>
-            <p className="w-24 text-center text-pretty text-xs pt-1 line-clamp-2 text-ellipsis">{title}</p>
+            <p className="w-24 text-center text-pretty text-xs pt-1.5 line-clamp-2 text-ellipsis">{title}</p>
             <GenericDialog
                 open={tooManySoundsDialogOpen}
                 setOpen={setTooManySoundsDialogOpen}

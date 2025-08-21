@@ -6,11 +6,13 @@ interface AmbienceState {
   config: Config
   originalConfig: Config
   globalVolume: number
+  ambiencePlaying: boolean
   updateConfig: (newConfig: Config) => void
   updateSoundVolume: (cellId: number, newVolume: number) => void
   updateGlobalVolume: (newVolume: number) => void
   addSound: (cellId: number, soundId: number) => void
   removeSound: (cellId: number) => void
+  updateAmbiencePlaying: (isAmbiencePlaying: boolean) => void
 }
 
 export const useAmbienceStore = create<AmbienceState>()(
@@ -20,6 +22,7 @@ export const useAmbienceStore = create<AmbienceState>()(
         config: [],
         originalConfig: [],
         globalVolume: 1,
+        ambiencePlaying: true,
         updateConfig: (newConfig) => set(() => ({ 
           config: newConfig,
           originalConfig: newConfig
@@ -35,7 +38,8 @@ export const useAmbienceStore = create<AmbienceState>()(
         })),
         removeSound: (cellId) => set((state) => ({
           config: state.config.filter((s) => s.cellId !== cellId),
-        }))
+        })),
+        updateAmbiencePlaying: (isAmbiencePlaying) => set(() => ({ ambiencePlaying: isAmbiencePlaying }))
       }),
       // { name: 'ambience-store' },
     )

@@ -13,6 +13,7 @@ model User {
   email     String     @unique
   name      String?
   ambiences Ambience[]
+  xp        Int        @default(0)
 }
 
 model Ambience {
