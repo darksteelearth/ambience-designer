@@ -18,6 +18,7 @@ import { useSoundUsageStore } from '@/stores/soundUsageStore';
 import { useSavedAmbiencesStore } from '@/stores/savedAmbiencesStore';
 import { useEffect, useState } from 'react';
 import { equalAmbiences } from '@/actions/equalAmbiences';
+import { useAudioContext } from '@/stores/audioContextStore';
 
 const MainPanel = () => {
   const { config, originalConfig, globalVolume, updateGlobalVolume } = useAmbienceStore();
@@ -31,6 +32,8 @@ const MainPanel = () => {
     enabled: !equalAmbiences(config, originalConfig) && config.length > 0,
     confirm: () => window.confirm("You have unsaved changes. Are you sure you wish to leave this page?")
   });
+
+  const setAudioContext = useAudioContext(state => state.setAudioContext);
 
   // On reload, browser close, or tab close, send data to the server:
   if (typeof document !== "undefined") {
@@ -64,6 +67,9 @@ const MainPanel = () => {
     for (const sound of config) {
       addSoundUsage(sound.cellId, sound.soundId, 0);
     }
+
+    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+    setAudioContext(audioContext);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

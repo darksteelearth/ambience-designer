@@ -9,15 +9,14 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 import { useAmbienceStore } from "@/stores/ambienceStore"
 import { useSoundUsageStore } from "@/stores/soundUsageStore"
 import React, { useEffect, useState } from "react"
-import ReactHowler from "react-howler"
 import { iconStyles } from "@/data/icon-styles"
+import AudioPlayer from "./AudioPlayer"
+import TonePlayer from "./TonePlayer"
 
 const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: string, src: string, volume: number, icon: LucideIcon }, scalePitches?: number[] }) => {
-  const { globalVolume, updateSoundVolume, removeSound, ambiencePlaying } = useAmbienceStore();
+  const { updateSoundVolume, removeSound, ambiencePlaying } = useAmbienceStore();
   const [currentVolume, setCurrentVolume] = useState(sound.volume)
   const [showVolumePercentage, setShowVolumePercentage] = useState(false);
-  const [playing, setPlaying] = useState(true);
-  const [looping, setLooping] = useState(false);
   const { incrementSecondsListened, setRemoved } = useSoundUsageStore();
 
   const handleRemove = () => {
@@ -27,45 +26,26 @@ const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: st
     }
   };
 
-  const randomPitch = () => {
-    if (!scalePitches || scalePitches.length === 0) return 1;
-    return 0.5 * scalePitches[Math.floor(Math.random() * scalePitches.length)];
-  }
-
-  const [modRate, setModRate] = useState(randomPitch());
-
-  const handleOnSoundEnd = () => {
-    setLooping(true);
-    setPlaying(true);
-    if (!scalePitches || scalePitches.length === 0) return;
-    setModRate(randomPitch());
-  }
-
   useEffect(() => {
     if (window.location.pathname === "/ambience") {
       const secondsInterval = setInterval(() => {
         incrementSecondsListened(sound.cellId);
       }, 1000);
-  
+
       return () => {
         clearInterval(secondsInterval);
       };
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div>
-      <ReactHowler 
-        key={scalePitches ? modRate : undefined}
-        src={sound.src} 
-        playing={playing && ambiencePlaying} 
-        loop={scalePitches ? looping : true} 
-        volume={currentVolume * globalVolume}
-        rate={scalePitches ? modRate : 1}
-        onPlay={() => setLooping(false)}
-        onEnd={handleOnSoundEnd}
-      />
+      {scalePitches && scalePitches.length > 0 ? 
+        <TonePlayer sound={sound} scalePitches={scalePitches} currentVolume={currentVolume} isPlaying={ambiencePlaying} /> :
+        <AudioPlayer sound={sound} currentVolume={currentVolume} isPlaying={ambiencePlaying} /> 
+      }
       <div className="flex justify-center mt-4">
         <Popover>
           <div className="relative w-20 h-20">
@@ -113,7 +93,7 @@ const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: st
                   value={[currentVolume]}
                   onValueChange={(value) => {
                     setCurrentVolume(value[0]);
-                    updateSoundVolume(sound.cellId, value[0])
+                    updateSoundVolume(sound.cellId, value[0]);
                   }}
                   onMouseEnter={() => setShowVolumePercentage(true)}
                   onMouseLeave={() => setShowVolumePercentage(false)}

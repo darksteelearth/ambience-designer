@@ -3,20 +3,20 @@
 import { AudioWaveform, CircleQuestionMark } from "lucide-react"
 import SoundLibrary from "./SoundLibrary"
 import SoundRow from "./SoundRow"
-import RecreatePlayer from "./RecreatePlayer"
 import { Button } from "./ui/button"
 import { AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "./ui/alert-dialog"
 import { useAmbienceStore } from "@/stores/ambienceStore"
 import React, { useEffect, useState } from "react"
 import { sound_metadata } from "@/data/sound-metadata"
 import { iconStyles } from "@/data/icon-styles"
+import AudioPlayer from "./AudioPlayer"
+import TonePlayer from "./TonePlayer"
 
 const RecreatePanel = () => {
     const { config, updateConfig, updateAmbiencePlaying } = useAmbienceStore();
     const [level, setLevel] = useState(1);
     const [dialogOpen, setDialogOpen] = useState(true);
     const [gameState, setGameState] = useState("landing");
-    const [listeningDialogAudioState, setDialogAudioState] = useState("not playing");
 
     const UnknownCell = ({ ping }: { ping?: boolean }) => {
         return (
@@ -39,6 +39,7 @@ const RecreatePanel = () => {
     }
 
     const [randomConfig, setRandomConfig] = useState(generateRandomConfig(0));
+    const [listeningAudioPool, setListeningAudioPool] = useState(randomConfig);
 
     const checkIfAmbiencesMatch = () => {
         if (config.length !== randomConfig.length) {
@@ -84,7 +85,7 @@ const RecreatePanel = () => {
 
     const handleListen = () => {
         if (gameState === "listening") {
-            setDialogAudioState("playing");
+            setListeningAudioPool(randomConfig);
             setDialogOpen(true);
         }
     }
@@ -96,8 +97,8 @@ const RecreatePanel = () => {
     useEffect(() => {
         if (randomConfig.length > 0) {
             if (randomConfig.length === level) {
+                setListeningAudioPool(randomConfig);
                 setGameState("listening");
-                setDialogAudioState("playing");
                 setDialogOpen(true);
             } else if (randomConfig.length < level) {
                 setRandomConfig(generateRandomConfig(level));
@@ -113,15 +114,44 @@ const RecreatePanel = () => {
 
     useEffect(() => {
         if (!dialogOpen) {
-            setDialogAudioState("not playing");
+            setListeningAudioPool([]);
             updateAmbiencePlaying(true);
         } else {
+            setListeningAudioPool(randomConfig);
             updateAmbiencePlaying(false);
         }
     }, [dialogOpen])
 
     return (
         <div className="lg:pl-50 lg:pr-50 pl-10 pr-10 pb-8">
+            {listeningAudioPool.map(s =>
+                s.scalePitches && s.scalePitches.length > 0 ?
+                    <TonePlayer
+                        key={s.id}
+                        sound={{
+                            cellId: s.id,
+                            title: s.title,
+                            src: "sounds/" + s.src,
+                            volume: 0.5,
+                            icon: s.icon ?? AudioWaveform
+                        }}
+                        scalePitches={s.scalePitches}
+                        currentVolume={0.5}
+                        isPlaying={true}
+                    /> :
+                    <AudioPlayer
+                        key={s.id}
+                        sound={{
+                            cellId: s.id,
+                            title: s.title,
+                            src: "sounds/" + s.src,
+                            volume: 0.5,
+                            icon: s.icon ?? AudioWaveform
+                        }}
+                        currentVolume={0.5}
+                        isPlaying={true}
+                    />
+            )}
             <div className="flex pt-3 pb-3 w-full justify-center">
                 <div className="flex flex-col items-center">
                     <h1 className="flex text-lg sm:text-xl font-medium p-1 pt-2">{`Recreate the Ambience: Level ${level}`}</h1>
@@ -175,49 +205,26 @@ const RecreatePanel = () => {
                                     <div className="flex justify-center items-center w-15 h-15 border rounded-md bg-white shadow shadow-md border-neutral-200 shadow-neutral-100/50 text-neutral-500">
                                         <CircleQuestionMark className="size-5" />
                                     </div>
-                                    {listeningDialogAudioState === "playing" &&
-                                        <RecreatePlayer
-                                            sound={{
-                                                cellId: s.id,
-                                                title: s.title,
-                                                src: "sounds/" + s.src,
-                                                volume: 0.5,
-                                                icon: s.icon ?? AudioWaveform
-                                            }}
-                                            scalePitches={s.scalePitches}
-                                        />}
                                 </div>
                             ))}
                         </div> :
-                        
-                            gameState === "success" || gameState === "failure" ?
-                                <div className="flex flex-wrap justify-center gap-2">
-                                    {randomConfig.map((sound) => (
-                                        <div key={sound.id} className="flex flex-col items-center m-1 mt-3">
-                                            <div className="relative">
-                                                <div className={`absolute inset-0 rounded-md bg-neutral-100 ${iconStyles.get(sound.icon ?? AudioWaveform)?.pingColor} animate-ping [animation-timing-function:ease-in] [animation-duration:3s] z-[-1]`}></div>
-                                                <div className={`flex justify-center items-center w-15 h-15 border rounded-md bg-white shadow shadow-md ${iconStyles.get(sound.icon ?? AudioWaveform)?.cellStyle}`}>
-                                                    {sound.icon ?
-                                                        <sound.icon className="size-5" /> :
-                                                        <AudioWaveform className="size-5" />
-                                                    }
-                                                </div>
+                        gameState === "success" || gameState === "failure" ?
+                            <div className="flex flex-wrap justify-center gap-2">
+                                {randomConfig.map((sound) => (
+                                    <div key={sound.id} className="flex flex-col items-center m-1 mt-3">
+                                        <div className="relative">
+                                            <div className={`absolute inset-0 rounded-md bg-neutral-100 ${iconStyles.get(sound.icon ?? AudioWaveform)?.pingColor} animate-ping [animation-timing-function:ease-in] [animation-duration:3s] z-[-1]`}></div>
+                                            <div className={`flex justify-center items-center w-15 h-15 border rounded-md bg-white shadow shadow-md ${iconStyles.get(sound.icon ?? AudioWaveform)?.cellStyle}`}>
+                                                {sound.icon ?
+                                                    <sound.icon className="size-5" /> :
+                                                    <AudioWaveform className="size-5" />
+                                                }
                                             </div>
-                                            <p className="w-24 text-center text-pretty text-xs pt-1.5 line-clamp-2 text-ellipsis">{sound.title}</p>
-                                            <RecreatePlayer
-                                                key={sound.id}
-                                                sound={{
-                                                    cellId: sound.id,
-                                                    title: sound.title,
-                                                    src: "sounds/" + sound.src,
-                                                    volume: 0.5,
-                                                    icon: sound.icon ?? AudioWaveform
-                                                }}
-                                                scalePitches={sound.scalePitches}
-                                            />
                                         </div>
-                                    ))}
-                                </div> : ""
+                                        <p className="w-24 text-center text-pretty text-xs pt-1.5 line-clamp-2 text-ellipsis">{sound.title}</p>
+                                    </div>
+                                ))}
+                            </div> : ""
                     }
                     <AlertDialogFooter>
                         <div className="flex w-full justify-center">
@@ -225,7 +232,7 @@ const RecreatePanel = () => {
                             <Button variant="outline" onClick={handleNextLevel} className={gameState === "success" ? "" : "hidden"}>Next Level</Button>
                             <Button variant="outline" onClick={handleStartOver} className={gameState === "failure" ? "" : "hidden"}>Start Over</Button>
                             <AlertDialogCancel asChild className={gameState === "listening" ? "" : "hidden"}>
-                                <Button variant="outline" onClick={() => setDialogAudioState("not playing")}>Close</Button>
+                                <Button variant="outline">Close</Button>
                             </AlertDialogCancel>
                             <AlertDialogCancel asChild>
                                 <Button variant="outline" onClick={(e) => e.preventDefault()} className="absolute z-[-1] opacity-0"></Button>
