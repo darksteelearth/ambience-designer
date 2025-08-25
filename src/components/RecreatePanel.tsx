@@ -11,12 +11,14 @@ import { sound_metadata } from "@/data/sound-metadata"
 import { iconStyles } from "@/data/icon-styles"
 import AudioPlayer from "./AudioPlayer"
 import TonePlayer from "./TonePlayer"
+import { useAudioContext } from "@/stores/audioContextStore"
 
 const RecreatePanel = () => {
     const { config, updateConfig, updateAmbiencePlaying } = useAmbienceStore();
     const [level, setLevel] = useState(1);
     const [dialogOpen, setDialogOpen] = useState(true);
     const [gameState, setGameState] = useState("landing");
+    const { audioContext, setAudioContext } = useAudioContext();
 
     const UnknownCell = ({ ping }: { ping?: boolean }) => {
         return (
@@ -109,6 +111,11 @@ const RecreatePanel = () => {
     }, [randomConfig, level])
 
     useEffect(() => {
+        if (!audioContext) {
+            const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+            setAudioContext(audioContext);
+          }
+
         return () => updateConfig([])
     }, [])
 

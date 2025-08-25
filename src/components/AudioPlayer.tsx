@@ -66,6 +66,26 @@ const AudioPlayer = ({ sound, currentVolume, isPlaying }: {
         }
     }
 
+    const muteAudio = () => {
+        if (gainNodeRef1.current) {
+            gainNodeRef1.current.gain.value = 0;
+        }
+
+        if (gainNodeRef2.current) {
+            gainNodeRef2.current.gain.value = 0;
+        }
+    }
+
+    const unmuteAudio = () => {
+        if (gainNodeRef1.current) {
+            gainNodeRef1.current.gain.value = currentVolume * globalVolume;
+        }
+
+        if (gainNodeRef2.current) {
+            gainNodeRef2.current.gain.value = currentVolume * globalVolume;
+        }
+    }
+
     useEffect(() => {
         if (!audioRef1.current) {
             audioRef1.current = new Audio(sound.src);
@@ -79,11 +99,15 @@ const AudioPlayer = ({ sound, currentVolume, isPlaying }: {
             audioRef2.current.addEventListener('timeupdate', handleTimeUpdate2);
         }
 
+        if (audioContext && audioContext.state === "suspended") {
+            audioContext.resume();
+        }
+
         if (isPlaying) {
+            unmuteAudio()
             audioRef1.current.play();
         } else {
-            audioRef1.current.pause();
-            audioRef2.current.pause();
+            muteAudio();
         }
     }, [isPlaying])
 

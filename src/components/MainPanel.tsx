@@ -33,7 +33,7 @@ const MainPanel = () => {
     confirm: () => window.confirm("You have unsaved changes. Are you sure you wish to leave this page?")
   });
 
-  const setAudioContext = useAudioContext(state => state.setAudioContext);
+  const { audioContext, setAudioContext } = useAudioContext();
 
   // On reload, browser close, or tab close, send data to the server:
   if (typeof document !== "undefined") {
@@ -68,8 +68,10 @@ const MainPanel = () => {
       addSoundUsage(sound.cellId, sound.soundId, 0);
     }
 
-    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-    setAudioContext(audioContext);
+    if (!audioContext) {
+      const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      setAudioContext(audioContext);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
