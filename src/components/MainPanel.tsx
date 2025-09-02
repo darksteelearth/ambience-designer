@@ -85,11 +85,11 @@ const MainPanel = () => {
     <div className="lg:pl-50 lg:pr-50 pl-10 pr-10">
       <div className="flex pt-3 pb-3 justify-center">
         <div className="flex w-full justify-between">
-          <h1 className="flex text-lg sm:text-xl font-medium items-center translate-y-0.5">Ambience Designer</h1>
+          <h1 className="flex text-lg sm:text-xl font-medium items-center translate-y-0.5 text-white text-shadow-black/50 text-shadow-md">Ambience Designer</h1>
           <div className="flex gap-3">
             <Popover>
               <PopoverTrigger asChild>
-                <Button variant="outline" title="global-volume">
+                <Button variant="outline" title="global-volume" className="bg-slate-900/50 text-white border-white/30">
                   {globalVolume === 0 ? <VolumeX /> : globalVolume < 0.5 ? <Volume1 /> : <Volume2 />}
                 </Button>
               </PopoverTrigger>
@@ -117,7 +117,7 @@ const MainPanel = () => {
                 </div>
               </PopoverContent>
             </Popover>
-            <Button onClick={handleLoad} variant="outline" className="flex justify-self-center text-sm">Load Ambience...</Button>
+            <Button onClick={handleLoad} variant="outline" className="flex justify-self-center text-sm bg-slate-900/50 text-white border-white/30">Load Ambience...</Button>
           </div>
         </div>
       </div>
@@ -126,7 +126,7 @@ const MainPanel = () => {
       <div className="pt-3 pb-8 flex justify-center">
         <div className="flex w-full justify-end">
           {status === "unauthenticated" &&
-            <p className="text-xs flex items-center text-center pr-4 text-gray-500">
+            <p className="text-xs flex items-center text-center pr-4 text-white">
               Sign in to save your ambience.
             </p>
           }

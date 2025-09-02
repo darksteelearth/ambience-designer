@@ -11,10 +11,10 @@ const SoundLibrary = () => {
     <div>
       <div className="flex justify-center">
         <Tabs defaultValue="search" className="flex w-full">
-          <ScrollAreaWithArrows tabslayout="true" showscrollbar="false" orientation="horizontal" className="w-full self-center mb-2">
+          <ScrollAreaWithArrows tabslayout="true" showscrollbar="false" orientation="horizontal" className="w-full self-center mb-2 bg-slate-900/70 rounded-md border border-white/30">
             <TabsList className="bg-transparent">
               <TabsTrigger value="search" title="search-tab">
-                <Search />
+                <Search className="relative left-0.5"/>
               </TabsTrigger>
               <TabsTrigger value="water_sounds">Water Sounds</TabsTrigger>
               <TabsTrigger value="nature_sounds">Nature Sounds</TabsTrigger>

@@ -10,18 +10,18 @@ const SelectPanel = () => {
 
   return (
     <div className="justify-content-center flex flex-col items-center p-5 pt-10">
-      <h1 className="text-xl font-medium md:mb-7 mb-2">Select an Ambience</h1>
+      <h1 className="text-xl font-medium md:mb-7 mb-4 text-white text-shadow-black/50 text-shadow-md">Select an Ambience</h1>
       <div className="flex justify-center gap-5 mb-4 hidden md:flex">
         <AmbiencesPanel listTitle="Default Ambiences" ambiences={defaultAmbiences} defaultAmbiences />
-        <AmbiencesPanel listTitle="Your Saved Ambiences" ambiences={savedAmbiences} defaultAmbiences={false} />
+        <AmbiencesPanel listTitle="Saved Ambiences" ambiences={savedAmbiences} defaultAmbiences={false} />
       </div>
       <Tabs defaultValue="defaultAmbiences" className="flex self-center md:hidden">
-        <TabsList className="flex self-center mb-4 bg-transparent">
+        <TabsList className="flex self-center mb-4 bg-transparent border border-white/30 h-10 bg-slate-900/50 rounded-sm w-full">
           <TabsTrigger value="defaultAmbiences">
             Default Ambiences
           </TabsTrigger>
           <TabsTrigger value="savedAmbiences">
-            Your Saved Ambiences
+            Saved Ambiences
           </TabsTrigger>
         </TabsList>
         <TabsContent value="defaultAmbiences">

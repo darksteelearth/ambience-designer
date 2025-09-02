@@ -23,8 +23,8 @@ const RecreatePanel = () => {
     const UnknownCell = ({ ping }: { ping?: boolean }) => {
         return (
             <div className="relative">
-                {ping && <div className={`absolute inset-0 rounded-md bg-neutral-100 animate-ping [animation-timing-function:ease-in] [animation-duration:3s] z-[-1]`}></div>}
-                <div className="flex justify-center items-center w-15 h-15 border rounded-md bg-white shadow shadow-md border-neutral-200 shadow-neutral-100/50 text-neutral-500">
+                {ping && <div className={`absolute inset-0 rounded-md bg-slate-500 animate-ping [animation-timing-function:ease-in] [animation-duration:3s] z-[-1]`}></div>}
+                <div className="flex justify-center items-center w-15 h-15 border rounded-md bg-slate-900/50 border-white/30 text-white/80">
                     <CircleQuestionMark className="size-5" />
                 </div>
             </div>
@@ -161,7 +161,7 @@ const RecreatePanel = () => {
             )}
             <div className="flex pt-3 pb-3 w-full justify-center">
                 <div className="flex flex-col items-center">
-                    <h1 className="flex text-lg sm:text-xl font-medium p-1 pt-2">{`Recreate the Ambience: Level ${level}`}</h1>
+                    <h1 className="flex text-lg sm:text-xl text-white font-medium p-1 pt-2">{`Recreate the Ambience: Level ${level}`}</h1>
                     <div className="flex gap-8 p-3">
                         {level < 5 ?
                             Array.from({ length: level }).map((_, index) => (
@@ -174,12 +174,12 @@ const RecreatePanel = () => {
                             </div>}
                     </div>
                     <div className="flex gap-6 p-3">
-                        {gameState === "success" ? <Button variant="outline" onClick={handleNextLevel} className="text-md">Next Level</Button> :
-                            gameState === "failure" ? <Button variant="outline" onClick={handleStartOver} className="text-md">Start Over</Button> :
-                                gameState === "landing" ? <Button variant="outline" onClick={handleBegin} className="text-md">Begin Listening</Button> :
+                        {gameState === "success" ? <Button variant="outline" onClick={handleNextLevel} className="text-md text-white bg-slate-900 border-white/30">Next Level</Button> :
+                            gameState === "failure" ? <Button variant="outline" onClick={handleStartOver} className="text-md text-white bg-slate-900 border-white/30">Start Over</Button> :
+                                gameState === "landing" ? <Button variant="outline" onClick={handleBegin} className="text-md text-white bg-slate-900 border-white/30">Begin Listening</Button> :
                                     <>
-                                        <Button variant="outline" onClick={handleListen} className="text-md w-20">Listen</Button>
-                                        <Button variant="outline" onClick={handleSubmit} className="text-md w-20 border-green-400 bg-green-100 shadow-md shadow-green-100/50 hover:bg-green-200">Submit</Button>
+                                        <Button variant="outline" onClick={handleListen} className="text-md text-white w-20 bg-slate-900/70 border-white/30">Listen</Button>
+                                        <Button variant="outline" onClick={handleSubmit} className="text-md text-white w-20 border-green-500/50 bg-green-600/70 hover:bg-green-300">Submit</Button>
                                     </>
                         }
                     </div>
@@ -207,12 +207,7 @@ const RecreatePanel = () => {
                     {gameState === "listening" ?
                         <div className="flex flex-wrap justify-center gap-13 m-2">
                             {randomConfig.map(s => (
-                                <div key={s.id} className="relative">
-                                    <div className={`absolute inset-0 rounded-md bg-neutral-100 animate-ping [animation-timing-function:ease-in] [animation-duration:3s] z-[-1]`}></div>
-                                    <div className="flex justify-center items-center w-15 h-15 border rounded-md bg-white shadow shadow-md border-neutral-200 shadow-neutral-100/50 text-neutral-500">
-                                        <CircleQuestionMark className="size-5" />
-                                    </div>
-                                </div>
+                                <UnknownCell key={s.id} ping />
                             ))}
                         </div> :
                         gameState === "success" || gameState === "failure" ?
@@ -220,8 +215,8 @@ const RecreatePanel = () => {
                                 {randomConfig.map((sound) => (
                                     <div key={sound.id} className="flex flex-col items-center m-1 mt-3">
                                         <div className="relative">
-                                            <div className={`absolute inset-0 rounded-md bg-neutral-100 ${iconStyles.get(sound.icon ?? AudioWaveform)?.pingColor} animate-ping [animation-timing-function:ease-in] [animation-duration:3s] z-[-1]`}></div>
-                                            <div className={`flex justify-center items-center w-15 h-15 border rounded-md bg-white shadow shadow-md ${iconStyles.get(sound.icon ?? AudioWaveform)?.cellStyle}`}>
+                                            <div className={`absolute inset-0 rounded-md bg-slate-300 ${iconStyles.get(sound.icon ?? AudioWaveform)?.pingColor} animate-ping [animation-timing-function:ease-in] [animation-duration:3s] z-[-1]`}></div>
+                                            <div className={`flex justify-center items-center w-15 h-15 border rounded-md bg-slate-900 shadow shadow-md ${iconStyles.get(sound.icon ?? AudioWaveform)?.cellStyle}`}>
                                                 {sound.icon ?
                                                     <sound.icon className="size-5" /> :
                                                     <AudioWaveform className="size-5" />

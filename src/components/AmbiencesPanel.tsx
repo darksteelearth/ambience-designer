@@ -37,23 +37,23 @@ const AmbiencesPanel = ({ listTitle, ambiences, defaultAmbiences }: { listTitle?
         <div>
             {listTitle && (
                 <div className="flex justify-center pb-3">
-                    <h2 className="text-md leading-none font-medium">{listTitle}</h2>
+                    <h2 className="text-md leading-none font-medium text-white text-shadow-black/50 text-shadow-md">{listTitle}</h2>
                 </div>)
             }
-            <ScrollAreaWithArrows showscrollbar="true" orientation="vertical" className="h-[calc(70vh-70px)] border border-slate-300 rounded-sm shadow-xs bg-slate-50">
+            <ScrollAreaWithArrows showscrollbar="true" orientation="vertical" className="h-[calc(70vh-70px)] border border-white/30 rounded-sm shadow-xs bg-slate-900/30">
                 <div className="p-5">
                     {defaultAmbiences && (
                         <>
-                            <Label htmlFor="search" className="mb-2">Search</Label>
+                            <Label htmlFor="search" className="mb-2 text-white">Search</Label>
                             <div className="relative mb-3">
-                                <Input id="search" className="bg-white mb-5 pl-8 text-sm" onChange={(e) => updateInput(e.target.value)} value={input} maxLength={100} placeholder="Enter an ambience..." />
+                                <Input id="search" className="mb-5 pl-8 text-sm bg-slate-900/50 border-white/30 text-white" onChange={(e) => updateInput(e.target.value)} value={input} maxLength={100} placeholder="Enter an ambience..." />
                                 <Search className="w-5 h-4 absolute top-1/2 left-2 transform -translate-y-1/2 text-gray-400/80 hover:text-gray-400/100" />
                             </div>
                         </>
                     )}
                     <div className="grid grid-cols-[134px_134px] lg:grid-cols-[134px_134px_134px] gap-5">
                         {!defaultAmbiences && <AmbienceCell key={Date.now()} ambience={{ title: "Create a New Ambience", config: [] }} createCell />}
-                        {(defaultAmbiences && displayedAmbiences.length === 0) && <p className="absolute w-full -translate-x-5 p-5 text-slate-500 text-center text-sm">No items matched your search.</p>}
+                        {(defaultAmbiences && displayedAmbiences.length === 0) && <p className="absolute w-full -translate-x-5 p-5 text-slate-500 text-center text-sm text-white/70">No items matched your search.</p>}
                         {!(!defaultAmbiences && loading && status === "authenticated") ? (
                             displayedAmbiences.map((ambience) => (
                                 <AmbienceCell key={ambience["title"]} ambience={{ title: ambience["title"], config: ambience["config"] }} createCell={false} userAmbience={!defaultAmbiences} />

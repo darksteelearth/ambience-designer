@@ -51,7 +51,7 @@ const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: st
           <div className="relative w-20 h-20">
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button onClick={handleRemove} variant="outline" size="sm" className="absolute -top-2 -right-2 w-6 h-6 rounded-xl z-10 border-red-300 hover:bg-red-100" title="return-sound-to-library">
+                <Button onClick={handleRemove} variant="outline" size="sm" className="absolute -top-2 -right-2 w-6 h-6 rounded-xl z-10  border border-red-500 hover:bg-red-800 bg-black" title="return-sound-to-library">
                   <ArrowDown className="stroke-red-400 size-3.5" />
                 </Button>
               </TooltipTrigger>
@@ -60,13 +60,13 @@ const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: st
               </TooltipContent>
             </Tooltip>
             <div className={`absolute inset-0 rounded-md ${iconStyles.get(sound.icon)?.pingColor} animate-ping [animation-timing-function:ease-in] [animation-duration:3s]`}></div>
-            <div className={`absolute flex justify-center items-center w-full h-full border rounded-md bg-white shadow shadow-md ${iconStyles.get(sound.icon)?.cellStyle}`}>
+            <div className={`absolute flex justify-center items-center w-full h-full border rounded-md bg-slate-900 ${iconStyles.get(sound.icon)?.cellStyle}`}>
               <sound.icon className="size-5" />
             </div>
             <Tooltip>
               <TooltipTrigger asChild>
                 <PopoverTrigger asChild>
-                  <Button variant="outline" size="sm" className="absolute -bottom-2 left-7 w-6 h-6 rounded-md z-10 shadow-md" title="sound-volume">
+                  <Button variant="outline" size="sm" className="absolute -bottom-2 left-7 w-6 h-6 rounded-md z-10 shadow-md bg-slate-900 text-white border-white/30" title="sound-volume">
                     {currentVolume === 0 ? <VolumeX className="size-3" /> :
                       currentVolume < 0.5 ? <Volume1 className="size-3" /> :
                         <Volume2 className="size-3" />}
@@ -106,7 +106,7 @@ const SoundCell = ({ sound, scalePitches }: { sound: { cellId: number, title: st
           </PopoverContent>
         </Popover>
       </div>
-      <p className="w-24 h-9 text-center text-pretty text-xs line-clamp-2 text-ellipsis mt-4">{sound.title}</p>
+      <p className="w-24 h-9 text-center text-pretty text-white text-xs line-clamp-2 text-ellipsis mt-4">{sound.title}</p>
     </div>
   )
 }

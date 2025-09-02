@@ -33,13 +33,13 @@ const LibraryCell = ({ soundId, title, icon }: { soundId: number, title: string,
         <div className="flex-col flex items-center">
             <div className="flex justify-center">
                 <div className="relative w-15 h-15">
-                    <div className={`flex justify-center items-center w-full h-full border bg-white shadow shadow-md rounded-md ${iconStyles.get(icon)?.cellStyle}`}>
+                    <div className={`flex justify-center items-center w-full h-full border bg-slate-900 rounded-md ${iconStyles.get(icon)?.cellStyle}`}>
                         {React.createElement(icon, { className: `size-5` })}
                     </div>
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <Button onClick={handleAdd} variant="outline" size="sm" className="absolute w-6 h-6 -top-2 -right-2 rounded-xl border-sky-300 hover:bg-sky-100 z-10" title="add-sound">
-                                <Plus className="stroke-sky-400 size-4" />
+                            <Button onClick={handleAdd} variant="outline" size="sm" className="absolute w-6 h-6 -top-2 -right-2 rounded-xl bg-black border-white/50 hover:bg-sky-500 z-10" title="add-sound">
+                                <Plus className="stroke-white size-4" />
                             </Button>
                         </TooltipTrigger>
                         <TooltipContent>
@@ -48,7 +48,7 @@ const LibraryCell = ({ soundId, title, icon }: { soundId: number, title: string,
                     </Tooltip>
                 </div>
             </div>
-            <p className="w-24 text-center text-pretty text-xs pt-1.5 line-clamp-2 text-ellipsis">{title}</p>
+            <p className="w-24 text-center text-pretty text-white text-xs pt-1.5 line-clamp-2 text-ellipsis">{title}</p>
             <GenericDialog
                 open={tooManySoundsDialogOpen}
                 setOpen={setTooManySoundsDialogOpen}

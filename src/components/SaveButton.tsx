@@ -68,7 +68,7 @@ const SaveButton = () => {
         <>
             <Dialog open={saveDialogOpen} onOpenChange={setSaveDialogOpen}>
                 <DialogTrigger asChild>
-                    <Button variant="outline" disabled={config.length <= 0 || status === "unauthenticated" || savedAmbiences.length >= 100} className="text-sm">
+                    <Button variant="outline" disabled={config.length <= 0 || status === "unauthenticated" || savedAmbiences.length >= 100} className="text-sm bg-slate-900/50 border-white/30 text-white">
                         Save Ambience...
                     </Button>
                 </DialogTrigger>

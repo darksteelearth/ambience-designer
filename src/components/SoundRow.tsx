@@ -12,10 +12,10 @@ const SoundRow = () => {
 
   return (
     <div className="flex justify-center-safe pb-10">
-      <ScrollAreaWithArrows showscrollbar="true" orientation="horizontal" className="flex rounded-md border w-full border-slate-300 bg-radial from-white to-slate-50 shadow-xs">
+      <ScrollAreaWithArrows showscrollbar="true" orientation="horizontal" className="flex rounded-md border w-full bg-slate-900/50 border-white/30 shadow-xs">
         <div className="flex justify-center items-center grid grid-rows-[160px] gap-15 grid-flow-col p-6">
           {config.length === 0 && (
-            <div className="text-slate-500 text-sm text-center">Browse the Sound Library to add sounds to the ambience.</div>
+            <div className="text-sm text-center text-white text-shadow-black/50 text-shadow-md">Browse the Sound Library to add sounds to the ambience.</div>
           )}
           {config.map((soundCellData: SoundCellData) => {
             const scd = sound_metadata.find(s => s.id === soundCellData.soundId);

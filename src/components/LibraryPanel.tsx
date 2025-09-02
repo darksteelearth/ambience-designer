@@ -22,15 +22,15 @@ const LibraryPanel = ({ sounds, search }: { sounds: { id: number, title: string,
       {search &&
         <div className="flex justify-center-safe pb-4">
           <div className="flex w-full gap-4">
-            <Label htmlFor="search">Search</Label>
+            <Label htmlFor="search" className="text-white/90">Search</Label>
             <div className="relative w-full">
-              <Input id="search" className="bg-white pl-8 h-fit text-sm" onChange={(e) => handleOnChange(e.target.value)} maxLength={200} placeholder="Search for sounds..." />
-              <Search className="w-5 h-4 absolute top-1/2 left-2 transform -translate-y-1/2 text-gray-400/80 hover:text-gray-400/100" />
+              <Input id="search" className="bg-slate-900/70 text-white pl-8 text-sm border-white/30 placeholder:text-white/70" onChange={(e) => handleOnChange(e.target.value)} maxLength={200} placeholder="Search for sounds..." />
+              <Search className="w-5 h-4 absolute top-1/2 left-2 transform -translate-y-1/2 text-white/70 hover:text-white" />
             </div>
           </div>
         </div>}
       <div className="flex justify-center-safe">
-        <ScrollAreaWithArrows showscrollbar="true" orientation="horizontal" className="flex rounded-md shadow-xs border border-slate-300 bg-radial from-white to-slate-50 w-full">
+        <ScrollAreaWithArrows showscrollbar="true" orientation="horizontal" className="flex rounded-md shadow-xs border border-white/30 bg-slate-900/70 w-full">
           <div className="flex justify-evenly grid grid-rows-[96px_96px] gap-5 grid-flow-col p-6">
             {displayedSounds.length > 0 ?
               <>
@@ -39,7 +39,7 @@ const LibraryPanel = ({ sounds, search }: { sounds: { id: number, title: string,
                 ))}
               </> :
               <div className="flex row-span-2 justify-center items-center">
-                <p className="text-gray-500 text-sm">No sounds matched your search.</p>
+                <p className="text-white/70 text-sm">No sounds matched your search.</p>
               </div>
             }
           </div>

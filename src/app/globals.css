@@ -133,3 +133,7 @@
 .infinite-scroll {
   animation: infinite-scroll 15s linear infinite;
 }
+
+::selection {
+	background: skyblue
+}

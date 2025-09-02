@@ -30,11 +30,11 @@ const AmbienceCell = ({ ambience, createCell, userAmbience }: { ambience: Ambien
   }
 
   return (
-    <div className="w-full aspect-[1/1] border shadow-xs rounded-sm flex flex-col items-center justify-between bg-white">
+    <div className="w-full aspect-[1/1] border border-white/30 shadow-xs rounded-sm flex flex-col items-center justify-between bg-slate-900/50 text-white">
       {createCell ? (
         <>
           <Button variant="ghost"
-            className="flex flex-col w-33 h-full text-sm rounded-sm"
+            className="flex flex-col w-33 h-full text-sm rounded-sm hover:bg-slate-100"
             onClick={handleOpen}>
             {loading ?
               <>
@@ -56,7 +56,7 @@ const AmbienceCell = ({ ambience, createCell, userAmbience }: { ambience: Ambien
             <p className="w-24 text-center text-pretty line-clamp-4 text-ellipsis">{ambience.title}</p>
           </div>
           <Button
-            className="w-27 h-fit text-xs rounded-sm m-3 mb-3 shadow-xs text-black bg-sky-50 border border-sky-200 hover:bg-sky-200/70"
+            className="w-27 h-fit text-xs rounded-sm m-3 mb-3 shadow-xs text-white bg-sky-700 border border-sky-600 hover:bg-sky-500"
             onClick={handleOpen}>
             {loading ? <Loader2 className="size-3 animate-spin" /> : "Open Ambience"}
           </Button>

@@ -4,6 +4,7 @@ import { NavigationGuardProvider } from "next-navigation-guard";
 import AuthSessionProvider from "@/components/AuthSessionProvider";
 import SavedAmbiences from "@/components/SavedAmbiences";
 import "./globals.css";
+import Background from "@/components/Background";
 
 const nunitoSans = Nunito_Sans({
   variable: "--font-nunito-sans",
@@ -26,7 +27,8 @@ export default function RootLayout({
         <SavedAmbiences />
         <body className={`${nunitoSans.className} antialiased`}>
           <NavigationGuardProvider>
-            <div className="fixed inset-0 -z-20 bg-radial from-white to-slate-50" />
+            <Background />
+            <div className="fixed inset-0 bg-radial from-slate-300/30 to-black z-[-1]" />
             <main className="mt-13">
               {children}
             </main>

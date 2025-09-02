@@ -35,17 +35,17 @@ const HomePanel = () => {
 
   const HeaderCell = ({ icon }: { icon: LucideIcon }) => {
     return (
-      <div className={`flex justify-center items-center w-15 h-15 border rounded-md bg-white shadow shadow-md ${iconStyles.get(icon)?.cellStyle}`}>
+      <div className={`flex justify-center items-center w-15 h-15 border rounded-md bg-slate-900 ${iconStyles.get(icon)?.cellStyle}`}>
         {React.createElement(icon, { className: "size-5" })}
       </div>
     )
   }
 
   return (
-    <div className="flex flex-col mt-auto justify-center-safe items-center p-5">
-      <header className="flex flex-col justify-center items-center">
-        <h1 className="text-center text-5xl font-bold line-clamp-2 w-100 sm:w-full p-2">Ambience Designer</h1>
-        <p className="text-center sm:text-2xl text-xl w-90 sm:w-full text-gray-500 p-2">Combine sounds to create your own sound world.</p>
+    <div className="flex flex-col mt-auto justify-center-safe items-center p-5 bg-slate-900/50 pt-6 border-t border-b border-white/30">
+      <header className="flex flex-col justify-center items-center text-shadow text-shadow-lg text-shadow-black">
+        <h1 className="text-center text-5xl font-bold line-clamp-2 w-100 sm:w-full p-2 pt-5 text-white">Ambience Designer</h1>
+        <p className="text-center sm:text-2xl text-xl w-90 sm:w-full text-white p-2">Combine sounds to create your own sound world.</p>
       </header>
       <div className="flex w-100 md:w-170 lg:w-200 overflow-hidden min-h-35 p-10">
         <div className="flex grid grid-flow-col justify-center items-center gap-15 pr-15 infinite-scroll">
@@ -61,17 +61,17 @@ const HomePanel = () => {
       </div>
       <div className="flex grid gap-4 p-2 pb-8">
         <div className="flex justify-center items-center">
-          <Button variant="outline" onClick={handleBrowseAmbiences} className="text-md w-fit h-fit">
+          <Button variant="outline" onClick={handleBrowseAmbiences} className="text-md w-fit h-fit shadow-black/50 shadow-md text-white bg-slate-900/50 border border-white/30 hover:bg-slate-100">
             {loadingSelectPanel ? <Loader2 className="size-4 m-1 animate-spin" /> : "Browse Ambiences"}
           </Button>
         </div>
         <div className="flex justify-center items-center">
-          <Button variant="outline" onClick={handleCreateNewAmbience} className="text-md w-fit h-fit">
+          <Button variant="outline" onClick={handleCreateNewAmbience} className="text-md w-fit h-fit shadow-black/50 shadow-md text-white bg-slate-900/50 border border-white/30 hover:bg-slate-100">
             {loadingMainPanel ? <Loader2 className="size-4 m-1 animate-spin" /> : "Create a New Ambience"}
           </Button>
         </div>
         <div className="flex justify-center items-center">
-          <Button variant="outline" onClick={handleSoundChallenge} className="text-md w-fit h-fit">
+          <Button variant="outline" onClick={handleSoundChallenge} className="text-md w-fit h-fit shadow-black/50 shadow-md text-white bg-slate-900/50 border border-white/30 hover:bg-slate-100">
             {loadingSoundChallenge ? <Loader2 className="size-4 m-1 animate-spin" /> : "Sound Challenge"}
           </Button>
         </div>
